@@ -6,31 +6,62 @@
   android:layout_height="match_parent"
   android:background="@color/cardview_shadow_start_color"
   tools:context=".MainActivity"
-  >
+  tools:ignore="MissingDefaultResource">
 
+  <EditText
+    android:id="@+id/confirm_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:ems="10"
+    android:hint="Confirm Password"
+    android:inputType="textPassword"
+    android:minHeight="48dp"
+    android:textColorHint="@color/black"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.502"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/login_password" />
+
+  <EditText
+    android:id="@+id/login_password"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="24dp"
+    android:ems="10"
+    android:hint="Password"
+    android:inputType="textPassword"
+    android:minHeight="48dp"
+    android:textColorHint="@color/black"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.497"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/embed" />
 
   <EditText
     android:id="@+id/login_name"
-    android:layout_width="293dp"
-    android:layout_height="48dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_marginTop="48dp"
     android:ems="10"
     android:hint="Name"
     android:inputType="textPersonName"
+    android:minHeight="48dp"
     android:textColorHint="@color/black"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.502"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
+  <!--    this is id for mail embed-->
   <EditText
-    android:id="@+id/login_password"
-    android:layout_width="287dp"
+    android:id="@+id/embed"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="28dp"
     android:ems="10"
-    android:hint="Password"
-    android:inputType="textPassword"
+    android:hint="Email id"
+    android:inputType="textEmailAddress"
     android:minHeight="48dp"
     android:textColorHint="@color/black"
     app:layout_constraintEnd_toEndOf="parent"
@@ -39,47 +70,23 @@
     app:layout_constraintTop_toBottomOf="@+id/login_name" />
 
   <Button
-    android:id="@+id/login"
-    android:layout_width="287dp"
-    android:layout_height="52dp"
-    android:layout_marginTop="24dp"
-    android:backgroundTint="@color/black"
-    android:text="Log in"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.498"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/login_password" />
-
-  <TextView
-    android:id="@+id/textView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="32dp"
-    android:text="Create New Account?"
-    android:textColor="#000000"
-    android:textSize="20sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.497"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/login" />
-
-  <Button
     android:id="@+id/signup"
-    android:layout_width="287dp"
-    android:layout_height="55dp"
-    android:layout_marginTop="29dp"
+    android:layout_width="214dp"
+    android:layout_height="52dp"
+    android:layout_marginBottom="184dp"
     android:backgroundTint="@color/black"
     android:text="Sign up"
+    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView" />
+    app:layout_constraintHorizontal_bias="0.497"
+    app:layout_constraintStart_toStartOf="parent" />
 
   <TextView
     android:id="@+id/textView2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="116dp"
-    android:text="login"
+    android:text="Sign Up"
     android:textColor="#EC0909"
     android:textSize="48sp"
     android:textStyle="bold"
@@ -87,6 +94,5 @@
     app:layout_constraintHorizontal_bias="0.48"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
