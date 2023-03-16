@@ -1,4 +1,4 @@
 package hu.bme.aut.projLab.dohdzf.fooddonation
 
-class login {
+class add_food {
 }

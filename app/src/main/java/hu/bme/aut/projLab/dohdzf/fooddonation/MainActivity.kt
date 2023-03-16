@@ -1,24 +1,28 @@
 package hu.bme.aut.projLab.dohdzf.fooddonation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.content.Intent
-import hu.bme.aut.projLab.dohdzf.fooddonation.MainActivity
+import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-  private lateinit var binding: MainActivity
+
+  private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
 
 
       //trial here
-//      binding = MainActivity.inflate(layoutInflater)
-//      setContentView(binding.root)
+      binding = ActivityMainBinding.inflate(layoutInflater)
+      setContentView(binding.root)
 
+      binding.signup.setOnClickListener{
 
-//      binding = MainActivity.inflate
+        val intentdetails = Intent (this, SignUp::class.java)
+        startActivity(intentdetails)
 
-      // NEED to connect sign up page with log in page
+      }
     }
 }
