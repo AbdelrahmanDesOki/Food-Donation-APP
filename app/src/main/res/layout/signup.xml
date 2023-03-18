@@ -74,7 +74,7 @@
     android:layout_width="214dp"
     android:layout_height="52dp"
     android:layout_marginBottom="184dp"
-    android:backgroundTint="@color/black"
+    android:backgroundTint="@android:color/holo_blue_bright"
     android:text="Sign up"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
