@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
       binding.signup.setOnClickListener{
 
-        val intentdetails = Intent (this, viewItem::class.java)
+        val intentdetails = Intent (this, dashboard::class.java)
         startActivity(intentdetails)
 
       }
