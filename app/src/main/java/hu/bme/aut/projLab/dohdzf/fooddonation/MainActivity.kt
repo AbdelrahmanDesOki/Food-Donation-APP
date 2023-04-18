@@ -9,6 +9,8 @@ class MainActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivityMainBinding
 
+//  var  KEY_User = "KEY_NAME"
+//  var KEY_Password = "KEY_EMAIL"
 
     override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
@@ -20,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
       binding.signup.setOnClickListener{
 
-        val intentdetails = Intent (this, SignUp::class.java)
+        val intentdetails = Intent (this, add_food::class.java)
         startActivity(intentdetails)
 
       }
