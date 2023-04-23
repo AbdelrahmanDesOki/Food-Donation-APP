@@ -47,8 +47,8 @@ class SignUp : AppCompatActivity() {
         binding.confirmButton.setError("CAnnot be empty")
       }
       else{
-
-        intentDetails.setClass (this, MainActivity::class.java)
+       intentDetails.setClass(this, MainActivity::class.java)
+//        intentDetails.setClass (this, MainActivity::class.java)
         startActivity(intentDetails)
       }
 
@@ -72,3 +72,7 @@ class SignUp : AppCompatActivity() {
 
 
 }
+
+//fun String.isNullOrEmpty(): Boolean {
+//
+//}
