@@ -3,6 +3,7 @@ package hu.bme.aut.projLab.dohdzf.fooddonation
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.firebase.auth.FirebaseAuth
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.SignupBinding
 
 class SignUp : AppCompatActivity() {
@@ -47,6 +48,21 @@ class SignUp : AppCompatActivity() {
         binding.confirmButton.setError("CAnnot be empty")
       }
       else{
+
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(KEY_Email, KEY_Password).addOnCompleteListener{
+            task ->
+          if (task.isSuccessful) {
+            // User was created successfully
+            val user = task.result?.user
+            // Do something with the user object, such as store user data in Firebase Realtime Database or Firestore
+          } else {
+            // User creation failed
+            val exception = task.exception
+            // Handle the exception, such as displaying an error message to the user
+          }
+        }
+
+
        intentDetails.setClass(this, MainActivity::class.java)
 //        intentDetails.setClass (this, MainActivity::class.java)
         startActivity(intentDetails)

@@ -29,7 +29,14 @@ class MainActivity : AppCompatActivity() {
       binding = ActivityMainBinding.inflate(layoutInflater)
       setContentView(binding.root)
 
+
+
       binding.signup.setOnClickListener{
+        val intent = Intent(this, SignUp::class.java)
+        startActivity(intent)
+        finish()
+      }
+      binding.login.setOnClickListener{
 
         KEY_LOG = binding.loginName.text.toString()
         KEY_Pass = binding.loginPassword.text.toString()
@@ -46,16 +53,14 @@ class MainActivity : AppCompatActivity() {
             // Authentication successful, proceed to next activity
             val intent = Intent(this, dashboard::class.java)
             startActivity(intent)
+            Toast.makeText(this, "Successfully Authenticated ☑️", Toast.LENGTH_SHORT).show()
             finish()
           } else {
             // Authentication failed, display error message
-            Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Authentication failed ❌", Toast.LENGTH_SHORT).show()
           }
           }
         }
-//        val intentdetails = Intent (this, add_food::class.java)
-//        startActivity(intentdetails)
-
       }
 
 //      val actionCodeSettings = actionCodeSettings {
