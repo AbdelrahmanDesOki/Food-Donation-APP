@@ -9,25 +9,40 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.location.LocationManagerCompat.getCurrentLocation
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.OnMapReadyCallback
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.AddFoodBinding
 
 
-class add_food:AppCompatActivity() {
+class add_food:AppCompatActivity(), OnMapReadyCallback {
 
-private lateinit var binding: AddFoodBinding
+  private lateinit var binding: AddFoodBinding
+//  private lateinit var map: GoogleMap
 
 val permissions = arrayOf(
     Manifest.permission.ACCESS_FINE_LOCATION,
     Manifest.permission.ACCESS_COARSE_LOCATION
   )
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = AddFoodBinding.inflate(layoutInflater)
     setContentView(binding.root)
+
+    //need to be checked again
+
+    val mapView = binding.mapView
+    //Issue is here.
+    mapView.getMapAsync(this)
+    mapView.onCreate(savedInstanceState)
+
+
 
 
     val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -48,15 +63,52 @@ val permissions = arrayOf(
 
 
     //Check if permission is granted or not
+
     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
       ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
     ) {
       // Permission granted, do something
+
+
     } else {
       // Permission not granted, request it
       ActivityCompat.requestPermissions(this, permissions, 123)
     }
 
+  }
+
+  override fun onMapReady(googleMap: GoogleMap) {
+    TODO("Not yet implemented")
+//    map = googleMap
+
+  }
+
+  override fun onStart() {
+    super.onStart()
+
+  }
+  override fun onResume() {
+    super.onResume()
+  }
+
+  override fun onPause() {
+    super.onPause()
+  }
+
+  override fun onStop() {
+    super.onStop()
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+  }
+
+  override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+    super.onSaveInstanceState(outState, outPersistentState)
+  }
+
+  override fun onLowMemory() {
+    super.onLowMemory()
   }
 
 

@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
 
       binding.signup.setOnClickListener{
-        val intent = Intent(this, SignUp::class.java)
+        val intent = Intent(this, add_food::class.java)
         startActivity(intent)
         finish()
       }
