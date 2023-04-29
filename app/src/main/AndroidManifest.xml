@@ -32,7 +32,7 @@
         -->
     <meta-data
       android:name="com.google.android.geo.API_KEY"
-      android:value="YOUR_API_KEY" />
+      android:value="AIzaSyC5G520g7QhEbD524PgkzMeqoGMKJPFbog" />
 
     <activity
       android:name=".MapsActivity"
@@ -42,7 +42,7 @@
     <activity android:name=".viewItem" />
     <activity android:name=".dashboard" />
     <activity android:name=".add_food" />
-    <activity android:name=".maps_view" />
+
     <activity
       android:name=".MainActivity"
       android:exported="true">
