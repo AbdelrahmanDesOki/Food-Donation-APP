@@ -85,21 +85,21 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/food_title" />
 
-  <com.google.android.gms.maps.MapView
-    android:id="@+id/mapView"
-    android:layout_width="362dp"
-    android:layout_height="150dp"
-    android:layout_marginTop="12dp"
-    android:ems="10"
-    android:hint="Address"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.51"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/name"
-    >
 
-  </com.google.android.gms.maps.MapView>
-
+  <Button
+    android:id="@+id/map"
+    android:layout_width="300dp"
+    android:layout_height="48dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="28dp"
+    android:backgroundTint="@android:color/holo_blue_bright"
+    android:text="Choose Your Location"
+    android:textColor="@color/black"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.51"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/name"
+    />
 
 <!--  <EditText-->
 <!--    android:id="@+id/address"-->
@@ -125,7 +125,7 @@
     android:inputType="textMultiLine"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/mapView" />
+    app:layout_constraintTop_toBottomOf="@+id/map" />
 
 
 

@@ -3,8 +3,9 @@
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/47f884429ada52432ebc21b37eb7472d/transformed/play-services-auth-base-18.0.4/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3f411cd3111e7cd21b6687e930efe782/transformed/play-services-auth-base-18.0.4/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/3f411cd3111e7cd21b6687e930efe782/transformed/play-services-auth-base-18.0.4/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3f411cd3111e7cd21b6687e930efe782/transformed/play-services-auth-base-18.0.4/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/69dd697b46164ffd8863b4091074bad7/transformed/play-services-auth-base-18.0.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/69dd697b46164ffd8863b4091074bad7/transformed/play-services-auth-base-18.0.4/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/69dd697b46164ffd8863b4091074bad7/transformed/play-services-auth-base-18.0.4/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-auth-base/18.0.4/4b7787e0e66302f46261e84cbdd60ccf21d5d0a0/play-services-auth-base-18.0.4-javadoc.jar!/" />

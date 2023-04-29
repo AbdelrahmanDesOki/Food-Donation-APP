@@ -3,8 +3,9 @@
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1b2ec13af0a98aa2608b4d4b435542c0/transformed/play-services-measurement-impl-21.2.2/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7ba858d27147ef5e602d7d0c419c3bbb/transformed/play-services-measurement-impl-21.2.2/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7ba858d27147ef5e602d7d0c419c3bbb/transformed/play-services-measurement-impl-21.2.2/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7ba858d27147ef5e602d7d0c419c3bbb/transformed/play-services-measurement-impl-21.2.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3fbfd74d936ccb5658ab6c5a3a63cb77/transformed/play-services-measurement-impl-21.2.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3fbfd74d936ccb5658ab6c5a3a63cb77/transformed/play-services-measurement-impl-21.2.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/3fbfd74d936ccb5658ab6c5a3a63cb77/transformed/play-services-measurement-impl-21.2.2/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-measurement-impl/21.2.2/d805fa4d01b4733b31480812e38a8356aa5dfb53/play-services-measurement-impl-21.2.2-javadoc.jar!/" />

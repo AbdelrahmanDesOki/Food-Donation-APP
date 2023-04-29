@@ -38,13 +38,19 @@ class add_food:AppCompatActivity(), OnMapReadyCallback {
     binding = AddFoodBinding.inflate(layoutInflater)
 
     setContentView(binding.root)
-    val mapFragment = supportFragmentManager.findFragmentById(R.id.mapView) as? SupportMapFragment
-    mapFragment?.getMapAsync(this)
+//    val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
+//    mapFragment?.getMapAsync(this)
 
+
+    binding.map.setOnClickListener{
+      val intent = Intent(this, MapsActivity::class.java)
+      startActivity(intent)
+      finish()
+    }
 
     //need to be checked again
 
-     map_View = binding.mapView
+//     map_View = binding.mapView
     //Issue is here.
 //    if(permissiongranted) {
 //      map_View.getMapAsync(this)
