@@ -14,19 +14,21 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.location.LocationManagerCompat.getCurrentLocation
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.*
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.AddFoodBinding
+import kotlin.properties.Delegates
 
 
 class add_food:AppCompatActivity(), OnMapReadyCallback {
 
   private lateinit var binding: AddFoodBinding
 //  private lateinit var map: GoogleMap
-lateinit var map_View: MapView
+  lateinit var map_View: MapView
+ var  permissiongranted: Boolean = false
 
-val permissions = arrayOf(
+  val permissions = arrayOf(
     Manifest.permission.ACCESS_FINE_LOCATION,
     Manifest.permission.ACCESS_COARSE_LOCATION
   )
@@ -34,14 +36,23 @@ val permissions = arrayOf(
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = AddFoodBinding.inflate(layoutInflater)
+
     setContentView(binding.root)
+    val mapFragment = supportFragmentManager.findFragmentById(R.id.mapView) as? SupportMapFragment
+    mapFragment?.getMapAsync(this)
+
 
     //need to be checked again
 
      map_View = binding.mapView
     //Issue is here.
-    map_View.getMapAsync(this)
-    map_View.onCreate(savedInstanceState)
+//    if(permissiongranted) {
+//      map_View.getMapAsync(this)
+//      map_View.onCreate(savedInstanceState)
+//    }
+//    else{
+//      Toast.makeText(this, "Permission for your location is snot granted!!", Toast.LENGTH_SHORT).show()
+//    }
 
 
 
@@ -59,7 +70,9 @@ val permissions = arrayOf(
         arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_LOCATION_PERMISSION)
     } else {
       // Location permission is granted, get the current location
+
       getCurrentLocation()
+      permissiongranted = true
     }
 
 
@@ -69,7 +82,7 @@ val permissions = arrayOf(
       ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
     ) {
       // Permission granted, do something
-
+       permissiongranted = true
 
     } else {
       // Permission not granted, request it
@@ -81,42 +94,50 @@ val permissions = arrayOf(
   override fun onMapReady(googleMap: GoogleMap) {
     TODO("Not yet implemented")
 //    map = googleMap
+//    map_View= googleMap
+    val sydney = LatLng(-33.852, 151.211)
+    googleMap.addMarker(
+      MarkerOptions()
+        .position(sydney)
+        .title("Marker in Sydney")
+    )
+    googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
   }
-
-  override fun onStart() {
-    super.onStart()
-     map_View.onStart()
-  }
-  override fun onResume() {
-    super.onResume()
-    map_View.onResume()
-  }
-
-  override fun onPause() {
-    super.onPause()
-    map_View.onPause()
-  }
-
-  override fun onStop() {
-    super.onStop()
-    map_View.onStop()
-  }
-
-  override fun onDestroy() {
-    super.onDestroy()
-    map_View.onDestroy()
-  }
-
-  override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-    super.onSaveInstanceState(outState, outPersistentState)
-    map_View.onSaveInstanceState(outState)
-  }
-
-  override fun onLowMemory() {
-    super.onLowMemory()
-    map_View.onLowMemory()
-  }
+//
+//  override fun onStart() {
+//    super.onStart()
+//     map_View.onStart()
+//  }
+//  override fun onResume() {
+//    super.onResume()
+//    map_View.onResume()
+//  }
+//
+//  override fun onPause() {
+//    super.onPause()
+//    map_View.onPause()
+//  }
+//
+//  override fun onStop() {
+//    super.onStop()
+//    map_View.onStop()
+//  }
+//
+//  override fun onDestroy() {
+//    super.onDestroy()
+//    map_View.onDestroy()
+//  }
+//
+//  override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+//    super.onSaveInstanceState(outState, outPersistentState)
+//    map_View.onSaveInstanceState(outState)
+//  }
+//
+//  override fun onLowMemory() {
+//    super.onLowMemory()
+//    map_View.onLowMemory()
+//  }
 
 
 

@@ -88,7 +88,7 @@
   <com.google.android.gms.maps.MapView
     android:id="@+id/mapView"
     android:layout_width="362dp"
-    android:layout_height="124dp"
+    android:layout_height="150dp"
     android:layout_marginTop="12dp"
     android:ems="10"
     android:hint="Address"
