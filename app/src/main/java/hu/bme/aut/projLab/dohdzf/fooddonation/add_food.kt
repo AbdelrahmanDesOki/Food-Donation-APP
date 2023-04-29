@@ -24,6 +24,7 @@ class add_food:AppCompatActivity(), OnMapReadyCallback {
 
   private lateinit var binding: AddFoodBinding
 //  private lateinit var map: GoogleMap
+lateinit var map_View: MapView
 
 val permissions = arrayOf(
     Manifest.permission.ACCESS_FINE_LOCATION,
@@ -37,10 +38,10 @@ val permissions = arrayOf(
 
     //need to be checked again
 
-    val mapView = binding.mapView
+     map_View = binding.mapView
     //Issue is here.
-    mapView.getMapAsync(this)
-    mapView.onCreate(savedInstanceState)
+    map_View.getMapAsync(this)
+    map_View.onCreate(savedInstanceState)
 
 
 
@@ -85,30 +86,36 @@ val permissions = arrayOf(
 
   override fun onStart() {
     super.onStart()
-
+     map_View.onStart()
   }
   override fun onResume() {
     super.onResume()
+    map_View.onResume()
   }
 
   override fun onPause() {
     super.onPause()
+    map_View.onPause()
   }
 
   override fun onStop() {
     super.onStop()
+    map_View.onStop()
   }
 
   override fun onDestroy() {
     super.onDestroy()
+    map_View.onDestroy()
   }
 
   override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
     super.onSaveInstanceState(outState, outPersistentState)
+    map_View.onSaveInstanceState(outState)
   }
 
   override fun onLowMemory() {
     super.onLowMemory()
+    map_View.onLowMemory()
   }
 
 
