@@ -28,8 +28,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap : GoogleMap
     private lateinit var currentlocation: Location
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    private val permissionCode = 101
-    var currentMarker: Marker? = null
+    private val permissionCode = 1000
+    lateinit var currentMarker: Marker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,38 +84,35 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
      mMap = googleMap
 
-      val latlng = LatLng(currentlocation.latitude,  currentlocation.longitude)
-      drawMarker(latlng)
+      val latlong = LatLng(currentlocation?.latitude!!,  currentlocation?.longitude!!)
+      drawMarker(latlong)
 
       mMap.setOnMarkerDragListener(object: GoogleMap.OnMarkerDragListener{
 
         override fun onMarkerDrag(p0: Marker) {
 
         }
-
         override fun onMarkerDragEnd(p0: Marker) {
-           if(currentMarker!=null){
+           if(currentMarker!=null)
              currentMarker?.remove()
 
              val newLatLng = LatLng(p0?.position!!.latitude, p0?.position!!.longitude)
              drawMarker(newLatLng)
-           }
         }
 
         override fun onMarkerDragStart(p0: Marker) {
 
         }
       } )
-
-
-
     }
 
   private fun drawMarker(latlng: LatLng){
-    val markerOptions = MarkerOptions().position(latlng).title("Current Location").snippet(getAddress(latlng.latitude, latlng.longitude)).draggable(true)
-          mMap?.animateCamera(CameraUpdateFactory.newLatLng(latlng))
-          mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 15f))
-          currentMarker =  mMap?.addMarker(markerOptions)
+    val markerOptions = MarkerOptions().position(latlng).title("Current Location")
+        .snippet(getAddress(latlng.latitude, latlng.longitude))
+          .draggable(true)
+          mMap.animateCamera(CameraUpdateFactory.newLatLng(latlng))
+          mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 7f))
+          currentMarker = mMap.addMarker(markerOptions)!!
           currentMarker?.showInfoWindow()
   }
 
