@@ -14,9 +14,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ActivityMapsBinding
 import java.util.*
 
@@ -28,7 +26,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap : GoogleMap
     private lateinit var currentlocation: Location
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    private val permissionCode = 1000
+    private val permissionCode = 101
     lateinit var currentMarker: Marker
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -110,6 +108,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     val markerOptions = MarkerOptions().position(latlng).title("Current Location")
         .snippet(getAddress(latlng.latitude, latlng.longitude))
           .draggable(true)
+      .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
           mMap.animateCamera(CameraUpdateFactory.newLatLng(latlng))
           mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 7f))
           currentMarker = mMap.addMarker(markerOptions)!!
