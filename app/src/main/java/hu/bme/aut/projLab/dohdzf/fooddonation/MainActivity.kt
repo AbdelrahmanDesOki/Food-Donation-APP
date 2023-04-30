@@ -16,14 +16,9 @@ class MainActivity : AppCompatActivity() {
   var  KEY_LOG = "KEY_LOGIN"
   var KEY_Pass = "KEY_PASS"
 
-
-
-
+  
     override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
-
-
-
 
       //trial here
       binding = ActivityMainBinding.inflate(layoutInflater)
@@ -62,21 +57,6 @@ class MainActivity : AppCompatActivity() {
           }
         }
       }
-
-//      val actionCodeSettings = actionCodeSettings {
-//        // URL you want to redirect back to. The domain (www.example.com) for this
-//        // URL must be whitelisted in the Firebase Console.
-//        url = "https://www.example.com/finishSignUp?cartId=1234"
-//        // This must be true
-//        handleCodeInApp = true
-//        setIOSBundleId("com.example.ios")
-//        setAndroidPackageName(
-//          "com.example.android",
-//          true, /* installIfNotAvailable */
-//          "12" /* minimumVersion */)
-//      }
-
-
 
     }
 

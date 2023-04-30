@@ -30,8 +30,8 @@ class SignUp : AppCompatActivity() {
       var intentDetails = Intent()
 
       KEY_Name = binding.loginName.text.toString()
-      KEY_Password = binding.loginPassword.text.toString()
       KEY_Email = binding.embed.text.toString()
+      KEY_Password = binding.loginPassword.text.toString()
       KEY_Pass_Validation = binding.confirmButton.text.toString()
 
       if(KEY_Name.isNullOrEmpty() ) {
@@ -43,7 +43,6 @@ class SignUp : AppCompatActivity() {
       else if(KEY_Password.isNullOrEmpty()) {
         binding.loginPassword.setError("CAnnot be empty")
       }
-
       else if (KEY_Pass_Validation.isNullOrEmpty() || !KEY_Pass_Validation.equals(KEY_Password)){
         binding.confirmButton.setError("CAnnot be empty")
       }
@@ -64,22 +63,9 @@ class SignUp : AppCompatActivity() {
 
 
        intentDetails.setClass(this, MainActivity::class.java)
-//        intentDetails.setClass (this, MainActivity::class.java)
         startActivity(intentDetails)
       }
 
-//         if( !binding.embed?.text.isNullOrEmpty()){
-//           if( !binding.loginPassword?.text.isNullOrEmpty()){
-//             if( !binding.confirmButton?.text.isNullOrEmpty()){
-//
-//             }
-//           }
-//         }
-
-
-//      else{
-//        binding.loginName.setError("Cannot be empty")
-//      }
     }
 
 
@@ -88,7 +74,3 @@ class SignUp : AppCompatActivity() {
 
 
 }
-
-//fun String.isNullOrEmpty(): Boolean {
-//
-//}

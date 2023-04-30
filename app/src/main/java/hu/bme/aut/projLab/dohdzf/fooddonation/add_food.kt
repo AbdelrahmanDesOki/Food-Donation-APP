@@ -51,6 +51,12 @@ class add_food:AppCompatActivity() {
       finish()
     }
 
+    binding.add.setOnClickListener {
+      val intent = Intent(this, dashboard::class.java)
+      startActivity(intent)
+      finish()
+    }
+
   }
 
   fun pickedPhoto(view: View){
