@@ -29,7 +29,7 @@ import java.util.*
 class add_food:AppCompatActivity() {
 
     private lateinit var binding: AddFoodBinding
-    private lateinit var bindingItem: ItemLayoutBinding
+//    private lateinit var bindingItem: ItemLayoutBinding
     private lateinit var auth: FirebaseAuth
     var pickedPhoto: Uri? = null
     var pickedBitmap: Bitmap ? = null
@@ -49,7 +49,7 @@ class add_food:AppCompatActivity() {
     db = FirebaseDatabase.getInstance().getReference("Users")
 
 
-     foodView  = binding.imageFood
+//     foodView  = binding.imageFood
 
     binding.map.setOnClickListener{
       val intent = Intent(this, MapsActivity::class.java)
@@ -59,18 +59,19 @@ class add_food:AppCompatActivity() {
 
     binding.add.setOnClickListener {
 
-            val title = binding.foodTitle.text.toString()
+            val titleFood = binding.foodTitle.text.toString()
             val userDonor = binding.name.text.toString()
 
-             val food = Food(title, userDonor)
+             val food = Food(titleFood, userDonor)
 
-      if(uid!=null){
-        db.child(uid).setValue( food).addOnCompleteListener{
+      if(uid != null){
+        db.child(uid).setValue(food).addOnCompleteListener{
           if(it.isSuccessful){
-
+            Toast.makeText(this@add_food,"Data Uploaded Successfully ", Toast.LENGTH_LONG).show()
             uploadImage()
+
           }else{
-            Toast.makeText(this,"FAiled to store data ", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@add_food,"FAiled to store data ", Toast.LENGTH_LONG).show()
           }
         }
       }
@@ -130,11 +131,12 @@ class add_food:AppCompatActivity() {
     }
 
   }
-
   private fun uploadImage() {
 
 
+    //check how to access photo from gallery
     imageUri = Uri.parse("android.resource://$packageName/${R.drawable.kiwi}")
+//    imageUri = Uri.parse(binding.imageFood.toString())
     storageReference = FirebaseStorage.getInstance().getReference("Users/"+ auth.currentUser?.uid)
     storageReference.putFile(imageUri).addOnSuccessListener{
       Toast.makeText(this,"Photo Uploaded Successfully ", Toast.LENGTH_LONG).show()
@@ -142,10 +144,9 @@ class add_food:AppCompatActivity() {
       Toast.makeText(this,"FAiled to Upload data ", Toast.LENGTH_LONG).show()
     }
 
-
-
-
   }
+
+
 
 
 
