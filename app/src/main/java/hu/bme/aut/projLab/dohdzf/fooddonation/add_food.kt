@@ -1,47 +1,53 @@
 package hu.bme.aut.projLab.dohdzf.fooddonation
 
 import android.Manifest
-import android.app.Activity
-import android.content.Context
+import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.ImageDecoder
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.location.LocationManagerCompat.getCurrentLocation
-import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.AddFoodBinding
+import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ItemLayoutBinding
+import java.text.SimpleDateFormat
+import java.util.*
 //import kotlinx.android.synthetic.main.add_food.*
-import kotlin.properties.Delegates
 
 
 class add_food:AppCompatActivity() {
 
     private lateinit var binding: AddFoodBinding
+    private lateinit var bindingItem: ItemLayoutBinding
+    private lateinit var auth: FirebaseAuth
     var pickedPhoto: Uri? = null
     var pickedBitmap: Bitmap ? = null
     var foodView: ImageView? = null
+   private lateinit var storageReference: StorageReference
+   private lateinit var imageUri: Uri
+
+  private lateinit var db : DatabaseReference
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = AddFoodBinding.inflate(layoutInflater)
-
     setContentView(binding.root)
+    //validation with User id to store data
+    auth = FirebaseAuth.getInstance()
+    val uid = auth.currentUser?.uid
+    db = FirebaseDatabase.getInstance().getReference("Users")
+
 
      foodView  = binding.imageFood
 
@@ -52,12 +58,100 @@ class add_food:AppCompatActivity() {
     }
 
     binding.add.setOnClickListener {
-      val intent = Intent(this, dashboard::class.java)
-      startActivity(intent)
-      finish()
+
+            val title = binding.foodTitle.text.toString()
+            val userDonor = binding.name.text.toString()
+
+             val food = Food(title, userDonor)
+
+      if(uid!=null){
+        db.child(uid).setValue( food).addOnCompleteListener{
+          if(it.isSuccessful){
+
+            uploadImage()
+          }else{
+            Toast.makeText(this,"FAiled to store data ", Toast.LENGTH_LONG).show()
+          }
+        }
+      }
+
+
+
+
+
+
+
+
+//      val progressDialog = ProgressDialog(this)
+//      progressDialog.setMessage("Uploading your data..")
+//      progressDialog.setCancelable(false)
+//      progressDialog.show()
+//
+//      val formatter = SimpleDateFormat("yyyy_MM_DD_HH_mm_ss", Locale.getDefault())
+//      val now = Date()
+//      val fileName = formatter.format(now)
+//      val storageRefrence = FirebaseStorage.getInstance().getReference("users/$fileName")
+//
+//      storageRefrence.putFile(pickedPhoto!!)
+
+
+
+
+
+
+//      val title = binding.foodTitle.text.toString()
+////      val userDonor = bindingItem.userDonor.text.toString()
+//      val name = binding.name.text.toString()
+//      val som = binding.add.text.toString()
+//
+//      db = FirebaseDatabase.getInstance().getReference("Users")
+//
+//      val Food = Food(title,name)
+//
+////      storageRefrence.putStream(Food)
+//      db.child(som).setValue(Food ).addOnSuccessListener {
+//
+//        binding.foodTitle.text.clear()
+//        binding.name.text.clear()
+//        //needd to clear image as well
+//
+//        Toast.makeText(this,"Successfully Saved ", Toast.LENGTH_LONG).show()
+//      }.addOnFailureListener{
+//
+//        Toast.makeText(this,"FAiled to store data ", Toast.LENGTH_LONG).show()
+//      }
+
+
+
+
+//      val intent = Intent(this, dashboard::class.java)
+//      startActivity(intent)
+//      finish()
     }
 
   }
+
+  private fun uploadImage() {
+
+
+    imageUri = Uri.parse("android.resource://$packageName/${R.drawable.kiwi}")
+    storageReference = FirebaseStorage.getInstance().getReference("Users/"+ auth.currentUser?.uid)
+    storageReference.putFile(imageUri).addOnSuccessListener{
+      Toast.makeText(this,"Photo Uploaded Successfully ", Toast.LENGTH_LONG).show()
+    }.addOnFailureListener{
+      Toast.makeText(this,"FAiled to Upload data ", Toast.LENGTH_LONG).show()
+    }
+
+
+
+
+  }
+
+
+
+
+
+
 
   fun pickedPhoto(view: View){
     if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE ) != PackageManager.PERMISSION_GRANTED){
@@ -82,19 +176,23 @@ class add_food:AppCompatActivity() {
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-    if( requestCode ==2 &&  resultCode == RESULT_OK && data!= null){
-         pickedPhoto = data.data
-      if(Build.VERSION.SDK_INT >= 28){
-        val source = ImageDecoder.createSource(this.contentResolver, pickedPhoto!!)
-        pickedBitmap = ImageDecoder.decodeBitmap(source)
-        foodView?.setImageBitmap(pickedBitmap)
-      }else{
-        pickedBitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, pickedPhoto)
-        foodView?.setImageBitmap(pickedBitmap)
-      }
-    }
     super.onActivityResult(requestCode, resultCode, data)
+    if( requestCode == 2 &&  resultCode == RESULT_OK && data!= null){
+         pickedPhoto = data?.data!!
+
+        binding.imageFood.setImageURI(pickedPhoto)
+
+
+//      if(Build.VERSION.SDK_INT >= 28){
+//        val source = ImageDecoder.createSource(this.contentResolver, pickedPhoto!!)
+//        pickedBitmap = ImageDecoder.decodeBitmap(source)
+//        foodView?.setImageBitmap(pickedBitmap)
+//      }else{
+//        pickedBitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, pickedPhoto)
+//        foodView?.setImageBitmap(pickedBitmap)
+//      }
+    }
+
   }
 
 

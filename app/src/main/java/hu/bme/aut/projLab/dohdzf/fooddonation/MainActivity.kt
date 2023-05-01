@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
   var  KEY_LOG = "KEY_LOGIN"
   var KEY_Pass = "KEY_PASS"
 
-  
+
     override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
 
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
 
       binding.signup.setOnClickListener{
-        val intent = Intent(this, add_food::class.java)
+        val intent = Intent(this, SignUp::class.java)
         startActivity(intent)
         finish()
       }
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
           FirebaseAuth.getInstance().signInWithEmailAndPassword(KEY_LOG, KEY_Pass).addOnCompleteListener(this){
               task -> if (task.isSuccessful) {
             // Authentication successful, proceed to next activity
-            val intent = Intent(this, dashboard::class.java)
+            val intent = Intent(this, add_food::class.java)
             startActivity(intent)
             Toast.makeText(this, "Successfully Authenticated ☑️", Toast.LENGTH_SHORT).show()
             finish()
@@ -56,6 +56,9 @@ class MainActivity : AppCompatActivity() {
           }
           }
         }
+
+
+
       }
 
     }

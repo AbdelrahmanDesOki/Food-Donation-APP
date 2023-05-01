@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.imageview.ShapeableImageView
 
 class FoodAdapter(private val foodlist: ArrayList<Food> ) : RecyclerView.Adapter<FoodAdapter.MyViewHolder>() {
 
@@ -24,10 +25,10 @@ class FoodAdapter(private val foodlist: ArrayList<Food> ) : RecyclerView.Adapter
     val currentitem = foodlist[position]
 
     //might not work properly
-    holder.imageFood.setImageResource(position)
+//    holder.imageFood.setImageResource(currentitem.imageFood!!)
 
     holder.titleFood.text = currentitem.titleFood
-    holder.locationFood.text = currentitem.locationFood
+    holder.Userdonor.text = currentitem.userDonor
 
 
   }
@@ -42,9 +43,13 @@ class FoodAdapter(private val foodlist: ArrayList<Food> ) : RecyclerView.Adapter
   class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val imageFood : ImageView = itemView.findViewById(R.id.imageItem)
         val titleFood : TextView = itemView.findViewById(R.id.food_title)
-        val locationFood : TextView = itemView.findViewById(R.id.locationFood)
+        val Userdonor : TextView = itemView.findViewById(R.id.userDonor)
   }
 
 
+
+}
+
+private fun ImageView.setImageResource(imageFood: ImageView) {
 
 }
