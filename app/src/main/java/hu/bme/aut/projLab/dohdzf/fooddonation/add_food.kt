@@ -143,7 +143,6 @@ class add_food:AppCompatActivity() {
     }.addOnFailureListener{
       Toast.makeText(this,"FAiled to Upload data ", Toast.LENGTH_LONG).show()
     }
-
   }
 
 

@@ -3,6 +3,7 @@ package hu.bme.aut.projLab.dohdzf.fooddonation
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.SignupBinding
 
@@ -51,13 +52,11 @@ class SignUp : AppCompatActivity() {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(KEY_Email, KEY_Password).addOnCompleteListener{
             task ->
           if (task.isSuccessful) {
-            // User was created successfully
-            val user = task.result?.user
-            // Do something with the user object, such as store user data in Firebase Realtime Database or Firestore
+            Toast.makeText(this, "Registration OK", Toast.LENGTH_LONG).show()
+//            val user = task.result?.user
           } else {
-            // User creation failed
-            val exception = task.exception
-            // Handle the exception, such as displaying an error message to the user
+            Toast.makeText(this, "Failed to Register Please try again", Toast.LENGTH_LONG).show()
+//            val exception = task.exception
           }
         }
 
