@@ -14,6 +14,8 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -21,6 +23,8 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.AddFoodBinding
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ItemLayoutBinding
+import java.io.ByteArrayOutputStream
+import java.net.URLEncoder
 import java.text.SimpleDateFormat
 import java.util.*
 //import kotlinx.android.synthetic.main.add_food.*
@@ -62,7 +66,7 @@ class add_food:AppCompatActivity() {
             val titleFood = binding.foodTitle.text.toString()
             val userDonor = binding.name.text.toString()
 
-             val food = Food(titleFood, userDonor)
+             val food = Food(FirebaseAuth.getInstance().currentUser!!.uid,titleFood, userDonor, imageurl = "")
 
       if(uid != null){
         db.child(uid).setValue(food).addOnCompleteListener{
@@ -76,78 +80,62 @@ class add_food:AppCompatActivity() {
         }
       }
 
-
-
-
-
-
-
-
-//      val progressDialog = ProgressDialog(this)
-//      progressDialog.setMessage("Uploading your data..")
-//      progressDialog.setCancelable(false)
-//      progressDialog.show()
-//
-//      val formatter = SimpleDateFormat("yyyy_MM_DD_HH_mm_ss", Locale.getDefault())
-//      val now = Date()
-//      val fileName = formatter.format(now)
-//      val storageRefrence = FirebaseStorage.getInstance().getReference("users/$fileName")
-//
-//      storageRefrence.putFile(pickedPhoto!!)
-
-
-
-
-
-
-//      val title = binding.foodTitle.text.toString()
-////      val userDonor = bindingItem.userDonor.text.toString()
-//      val name = binding.name.text.toString()
-//      val som = binding.add.text.toString()
-//
-//      db = FirebaseDatabase.getInstance().getReference("Users")
-//
-//      val Food = Food(title,name)
-//
-////      storageRefrence.putStream(Food)
-//      db.child(som).setValue(Food ).addOnSuccessListener {
-//
-//        binding.foodTitle.text.clear()
-//        binding.name.text.clear()
-//        //needd to clear image as well
-//
-//        Toast.makeText(this,"Successfully Saved ", Toast.LENGTH_LONG).show()
-//      }.addOnFailureListener{
-//
-//        Toast.makeText(this,"FAiled to store data ", Toast.LENGTH_LONG).show()
-//      }
-
-
-
-
-//      val intent = Intent(this, dashboard::class.java)
-//      startActivity(intent)
-//      finish()
+      val intent = Intent(this, dashboard::class.java)
+      startActivity(intent)
+      finish()
     }
 
   }
   private fun uploadImage() {
 
 
+
+
+
+//        newImagesRef.downloadUrl.addOnCompleteListener(object : OnCompleteListener<Uri> {
+//          override fun onComplete(task: Task<Uri>) {
+//            uploadPost(task.result.toString())
+//          }
+//        })
+
+
     //check how to access photo from gallery
-    imageUri = Uri.parse("android.resource://$packageName/${R.drawable.kiwi}")
-//    imageUri = Uri.parse(binding.imageFood.toString())
-    storageReference = FirebaseStorage.getInstance().getReference("Users/"+ auth.currentUser?.uid)
-    storageReference.putFile(imageUri).addOnSuccessListener{
-      Toast.makeText(this,"Photo Uploaded Successfully ", Toast.LENGTH_LONG).show()
-    }.addOnFailureListener{
-      Toast.makeText(this,"FAiled to Upload data ", Toast.LENGTH_LONG).show()
-    }
+//    imageUri = Uri.parse("android.resource://$packageName/${R.drawable.kiwi}")
+////    imageUri = Uri.parse(binding.imageFood.toString())
+    val baos = ByteArrayOutputStream()
+    pickedBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+    val imageInBytes = baos.toByteArray()
+
+    val storageRef = FirebaseStorage.getInstance().getReference()
+    val newImage = URLEncoder.encode(UUID.randomUUID().toString(), "UTF-8") + ".jpg"
+    val newImagesRef = storageRef.child("Users/$newImage")
+    newImagesRef.putBytes(imageInBytes)
+      .addOnFailureListener { exception ->
+        Toast.makeText(this, exception.message, Toast.LENGTH_SHORT)
+          .show()
+      }.addOnSuccessListener { taskSnapshot ->
+        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+      }
+
+
+//    storageReference = FirebaseStorage.getInstance().getReference("Users/"+ auth.currentUser?.uid)
+//    storageReference.putFile(imageUri).addOnSuccessListener{
+//      Toast.makeText(this,"Photo Uploaded Successfully ", Toast.LENGTH_LONG).show()
+//    }.addOnFailureListener{
+//      Toast.makeText(this,"FAiled to Upload data ", Toast.LENGTH_LONG).show()
+//    }
+
+
+
+
+
   }
 
 
 
+fun uploadPost(imageUrl: String = ""){
 
+}
 
 
 
@@ -178,10 +166,13 @@ class add_food:AppCompatActivity() {
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     if( requestCode == 2 &&  resultCode == RESULT_OK && data!= null){
-         pickedPhoto = data?.data!!
+//         pickedPhoto = data?.data!!
+//
+//        binding.imageFood.setImageURI(pickedPhoto)
 
-        binding.imageFood.setImageURI(pickedPhoto)
-
+      pickedBitmap = data!!.extras!!.get("data") as Bitmap
+      binding.imageFood.setImageBitmap(pickedBitmap)
+      binding.imageFood.visibility = View.VISIBLE
 
 //      if(Build.VERSION.SDK_INT >= 28){
 //        val source = ImageDecoder.createSource(this.contentResolver, pickedPhoto!!)

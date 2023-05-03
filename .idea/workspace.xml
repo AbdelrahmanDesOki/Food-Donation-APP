@@ -22,7 +22,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hu/bme/aut/projLab/dohdzf/fooddonation/SignUp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hu/bme/aut/projLab/dohdzf/fooddonation/SignUp.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hu/bme/aut/projLab/dohdzf/fooddonation/Food.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hu/bme/aut/projLab/dohdzf/fooddonation/Food.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/hu/bme/aut/projLab/dohdzf/fooddonation/add_food.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hu/bme/aut/projLab/dohdzf/fooddonation/add_food.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
