@@ -64,7 +64,7 @@ private fun getFoodData() {
           //all data fetched in this arraylist
           foodArraylist.add(food!!)
         }
-        foodRecyclerView?.adapter = FoodAdapter(foodArraylist)
+        foodRecyclerView?.adapter = FoodAdapter()
       }
 
     }

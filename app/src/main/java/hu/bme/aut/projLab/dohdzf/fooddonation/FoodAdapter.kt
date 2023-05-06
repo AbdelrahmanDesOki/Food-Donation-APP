@@ -16,9 +16,9 @@ import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ItemLayoutBinding
 
 //import  hu.bme.aut.projLab.dohdzf.fooddonation.Foodadapterbinding
 
-class FoodAdapter(private val foodlist: ArrayList<Food>) : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
+class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
 
-//   private val foodlist = ArrayList<Food>()
+   private val foodlist = ArrayList<Food>()
    lateinit var currentUid: String
     lateinit var context: Context
 
