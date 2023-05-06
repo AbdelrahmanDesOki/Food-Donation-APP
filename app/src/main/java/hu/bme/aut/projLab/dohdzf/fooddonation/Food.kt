@@ -5,7 +5,7 @@ import android.net.Uri
 import android.widget.ImageView
 
 data class Food(
-  var uid: String = "" ,
+//  var uid: String = "" ,
   var titleFood: String ?= null,
-  var userDonor: String ?= null,
-  var imageurl: String = "")
+  var userDonor: String ?= null
+      )

@@ -66,8 +66,8 @@ class add_food:AppCompatActivity() {
             val titleFood = binding.foodTitle.text.toString()
             val userDonor = binding.name.text.toString()
 
-             val food = Food(FirebaseAuth.getInstance().currentUser!!.uid,titleFood, userDonor, imageurl = "")
-
+             val food = Food(titleFood, userDonor)
+//FirebaseAuth.getInstance().currentUser!!.uid,
       if(uid != null){
         db.child(uid).setValue(food).addOnCompleteListener{
           if(it.isSuccessful){

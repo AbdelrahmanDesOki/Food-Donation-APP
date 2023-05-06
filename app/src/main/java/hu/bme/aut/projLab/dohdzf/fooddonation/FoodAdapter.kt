@@ -1,3 +1,15 @@
+//package hu.bme.aut.projLab.dohdzf.fooddonation
+//
+//class FoodAdapter {
+//}
+//
+//
+//
+
+
+
+
+
 package hu.bme.aut.projLab.dohdzf.fooddonation
 
 import android.view.LayoutInflater
@@ -7,6 +19,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
+//import  hu.bme.aut.projLab.dohdzf.fooddonation.Foodadapterbinding
 
 class FoodAdapter(private val foodlist: ArrayList<Food> ) : RecyclerView.Adapter<FoodAdapter.MyViewHolder>() {
 
@@ -21,6 +34,14 @@ class FoodAdapter(private val foodlist: ArrayList<Food> ) : RecyclerView.Adapter
   }
 
   override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    var post = foodlist.get(holder.adapterPosition)
+
+    holder
+
+
+
+
+
 
     val currentitem = foodlist[position]
 
@@ -41,13 +62,14 @@ class FoodAdapter(private val foodlist: ArrayList<Food> ) : RecyclerView.Adapter
 
 
   class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val imageFood : ImageView = itemView.findViewById(R.id.imageItem)
-        val titleFood : TextView = itemView.findViewById(R.id.food_title)
-        val Userdonor : TextView = itemView.findViewById(R.id.userDonor)
+    val imageFood : ImageView = itemView.findViewById(R.id.imageItem)
+    val titleFood : TextView = itemView.findViewById(R.id.food_title)
+    val Userdonor : TextView = itemView.findViewById(R.id.userDonor)
   }
 
 
-
+//  inner class ViewHolder(val binding: Foodadapterbinding) : RecyclerView.ViewHolder(binding.root){
+//  }
 }
 
 private fun ImageView.setImageResource(imageFood: ImageView) {
