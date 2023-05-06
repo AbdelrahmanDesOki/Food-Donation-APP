@@ -8,28 +8,28 @@
   android:orientation="vertical"
   tools:context=".add_food"
   >
+
   <androidx.cardview.widget.CardView
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardPreventCornerOverlap="false"
     app:cardElevation="10dp"
-    >
+    app:cardPreventCornerOverlap="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:padding="20dp"
       android:background="@color/white"
       android:elevation="10dp"
-      >
+      android:padding="20dp">
 
       <ImageView
         android:id="@+id/imageItem"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:src="@drawable/fuztea"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/fuztea"
         app:srcCompat="@drawable/ic_launcher_background" />
 
       <TextView
@@ -37,16 +37,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:background="@color/white"
         android:text="Title"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.326"
         app:layout_constraintStart_toEndOf="@+id/imageItem"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
       <TextView
@@ -54,13 +53,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:background="@color/white"
         android:text="Name of Donor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toStartOf="@+id/food_title"
-        app:layout_constraintTop_toBottomOf="@+id/food_title"
-        android:background="@color/white"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/food_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.cardview.widget.CardView>

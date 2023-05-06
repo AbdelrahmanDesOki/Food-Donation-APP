@@ -21,9 +21,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 //import  hu.bme.aut.projLab.dohdzf.fooddonation.Foodadapterbinding
 
-class FoodAdapter(private val foodlist: ArrayList<Food> ) : RecyclerView.Adapter<FoodAdapter.MyViewHolder>() {
+class FoodAdapter() : RecyclerView.Adapter<FoodAdapter.MyViewHolder>() {
 
-
+   private val foodlist = ArrayList<Food>()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
@@ -34,9 +34,9 @@ class FoodAdapter(private val foodlist: ArrayList<Food> ) : RecyclerView.Adapter
   }
 
   override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-    var post = foodlist.get(holder.adapterPosition)
+//    var post = foodlist.get(holder.adapterPosition)
 
-    holder
+
 
 
 
@@ -59,6 +59,13 @@ class FoodAdapter(private val foodlist: ArrayList<Food> ) : RecyclerView.Adapter
   }
 
 
+    fun updateFoodlist(foodlist: List<Food >){
+
+      this.foodlist.clear()
+      this.foodlist.addAll(foodlist)
+      notifyDataSetChanged()
+
+    }
 
 
   class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){

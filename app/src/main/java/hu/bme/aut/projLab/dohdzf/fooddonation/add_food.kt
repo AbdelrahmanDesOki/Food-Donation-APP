@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -82,10 +83,19 @@ class add_food:AppCompatActivity() {
 
       val intent = Intent(this, dashboard::class.java)
       startActivity(intent)
+      replaceFragement(HomeFragment())
       finish()
     }
 
   }
+
+  private fun replaceFragement(fragment: Fragment) {
+    val fragmentmanager = supportFragmentManager
+    val fragmentTransaction = fragmentmanager.beginTransaction()
+    fragmentTransaction.replace(R.id.frameLayout, fragment)
+    fragmentTransaction.commit()
+  }
+
   private fun uploadImage() {
 
 
