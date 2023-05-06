@@ -7,6 +7,17 @@
   tools:context=".dashboard"
   >
 
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recyclerPosts"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:listitem="@layout/item_layout">
+  </androidx.recyclerview.widget.RecyclerView>
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
     android:id="@+id/add"
@@ -16,24 +27,12 @@
     android:backgroundTint="@color/teal_200"
     android:clickable="true"
     android:focusable="true"
-    app:layout_constraintBottom_toBottomOf="@+id/foodList"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.915"
-    app:layout_constraintStart_toStartOf="parent"
+    app:layout_anchor="@id/recyclerPosts"
+    app:layout_anchorGravity="bottom|end"
     app:srcCompat="@android:drawable/ic_menu_add"
-    tools:ignore="MissingConstraints" />
-
-  //in other names user list
-  <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/foodList"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:visibility="visible"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-      tools:listitem="@layout/item_layout"/>
+    tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
