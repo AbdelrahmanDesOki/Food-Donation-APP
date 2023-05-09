@@ -167,6 +167,12 @@ private fun sendItem(imageUrl: String = ""){
           .show()
       }.addOnSuccessListener { taskSnapshot ->
         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+        newImagesRef.downloadUrl.addOnCompleteListener(object : OnCompleteListener<Uri>{
+          override fun onComplete(p0: Task<Uri>) {
+            sendItem(p0.result.toString())
+          }
+
+        })
       }
 
 

@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
+import com.google.firebase.firestore.FirebaseFirestore
 
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ItemLayoutBinding
 
@@ -20,6 +21,7 @@ import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ItemLayoutBinding
 class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
    private val foodlist = ArrayList<Food>()
+  var foodKeys = mutableListOf<String>()
    lateinit var currentUid: String
     lateinit var context: Context
 
@@ -56,6 +58,27 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
   override fun getItemCount(): Int {
     return foodlist.size
+  }
+
+   fun addFood(food:Food, key: String){
+     foodlist.add(food)
+     foodKeys.add(key)
+     //notifyDataSetChanged()
+     notifyItemInserted(foodlist.lastIndex)
+   }
+  fun removeFood(index:Int){
+    FirebaseFirestore.getInstance().collection("Users").document(foodKeys[index]).delete()
+    foodlist.removeAt(index)
+    foodKeys.removeAt(index)
+    notifyItemRemoved(index)
+  }
+  fun removeFoodByKey(key: String) {
+    val index = foodKeys.indexOf(key)
+    if (index != -1) {
+      foodlist.removeAt(index)
+      foodKeys.removeAt(index)
+      notifyItemRemoved(index)
+    }
   }
 
 
