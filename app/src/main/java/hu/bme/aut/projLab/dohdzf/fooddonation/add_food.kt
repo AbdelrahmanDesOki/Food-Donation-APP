@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.AddFoodBinding
@@ -45,7 +46,7 @@ class add_food:AppCompatActivity() {
 //   private lateinit var storageReference: StorageReference
 //   private lateinit var imageUri: Uri
    var uploadBitmap: Bitmap? = null
-  private lateinit var db : DatabaseReference
+//  private lateinit var db : DatabaseReference
 
   companion object {
     private const val PERMISSION_REQUEST_CODE = 1001
@@ -63,7 +64,7 @@ class add_food:AppCompatActivity() {
     //validation with User id to store data
     auth = FirebaseAuth.getInstance()
     val uid = auth.currentUser?.uid
-    db = FirebaseDatabase.getInstance().getReference("Users")
+//    db = FirebaseDatabase.getInstance().getReference("Users")
 
 
 //     foodView  = binding.imageFood
@@ -107,17 +108,31 @@ private fun sendItem(imageUrl: String = ""){
   )
   val uid = FirebaseAuth.getInstance().currentUser!!.uid
 
-  if(uid != null){
-    db.child(uid).setValue(food).addOnCompleteListener{
-      if(it.isSuccessful){
-        Toast.makeText(this@add_food,"Data Uploaded Successfully ", Toast.LENGTH_LONG).show()
-        uploadImage()
+  var usercollection = FirebaseFirestore.getInstance().collection("Users")
 
-      }else{
-        Toast.makeText(this@add_food,"FAiled to store data ", Toast.LENGTH_LONG).show()
-      }
-    }
+  usercollection
+    .add(food)
+    .addOnSuccessListener {
+    Toast.makeText(this@add_food,"Data Uploaded Successfully ", Toast.LENGTH_LONG).show()
   }
+    .addOnFailureListener{
+      Toast.makeText(this@add_food,"Failed to Upload Data ", Toast.LENGTH_LONG).show()
+    }
+
+
+
+
+//  if(uid != null){
+//    db.child(uid).setValue(food).addOnCompleteListener{
+//      if(it.isSuccessful){
+//        Toast.makeText(this@add_food,"Data Uploaded Successfully ", Toast.LENGTH_LONG).show()
+//        uploadImage()
+//
+//      }else{
+//        Toast.makeText(this@add_food,"FAiled to store data ", Toast.LENGTH_LONG).show()
+//      }
+//    }
+//  }
 }
 
   private fun send(v: View){
