@@ -106,7 +106,7 @@ private fun sendItem(imageUrl: String = ""){
     binding.name.text.toString(),
     imageUrl
   )
-  val uid = FirebaseAuth.getInstance().currentUser!!.uid
+//  val uid = FirebaseAuth.getInstance().currentUser!!.uid
 
   var usercollection = FirebaseFirestore.getInstance().collection("Users")
 
@@ -119,23 +119,9 @@ private fun sendItem(imageUrl: String = ""){
       Toast.makeText(this@add_food,"Failed to Upload Data ", Toast.LENGTH_LONG).show()
     }
 
-
-
-
-//  if(uid != null){
-//    db.child(uid).setValue(food).addOnCompleteListener{
-//      if(it.isSuccessful){
-//        Toast.makeText(this@add_food,"Data Uploaded Successfully ", Toast.LENGTH_LONG).show()
-//        uploadImage()
-//
-//      }else{
-//        Toast.makeText(this@add_food,"FAiled to store data ", Toast.LENGTH_LONG).show()
-//      }
-//    }
-//  }
 }
 
-  private fun send(v: View){
+   fun send(v: View){
     if(uploadBitmap == null){
          sendItem()
     }else{
@@ -158,7 +144,7 @@ private fun sendItem(imageUrl: String = ""){
     uploadBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
     val imageInBytes = baos.toByteArray()
 
-    val storageRef = FirebaseStorage.getInstance().getReference()
+    val storageRef = FirebaseStorage.getInstance().getReference("Users")
     val newImage = URLEncoder.encode(UUID.randomUUID().toString(), "UTF-8") + ".jpg"
     val newImagesRef = storageRef.child("Users/$newImage")
     newImagesRef.putBytes(imageInBytes)
@@ -167,12 +153,7 @@ private fun sendItem(imageUrl: String = ""){
           .show()
       }.addOnSuccessListener { taskSnapshot ->
         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-        newImagesRef.downloadUrl.addOnCompleteListener(object : OnCompleteListener<Uri>{
-          override fun onComplete(p0: Task<Uri>) {
-            sendItem(p0.result.toString())
-          }
-
-        })
+        newImagesRef.downloadUrl.addOnCompleteListener { p0 -> sendItem(p0.result.toString()) }
       }
 
 
