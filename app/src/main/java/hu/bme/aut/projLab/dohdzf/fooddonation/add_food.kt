@@ -140,6 +140,10 @@ private fun sendItem(imageUrl: String = ""){
     //check how to access photo from gallery
 //    imageUri = Uri.parse("android.resource://$packageName/${R.drawable.kiwi}")
 ////    imageUri = Uri.parse(binding.imageFood.toString())
+
+
+
+
     val baos = ByteArrayOutputStream()
     uploadBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
     val imageInBytes = baos.toByteArray()

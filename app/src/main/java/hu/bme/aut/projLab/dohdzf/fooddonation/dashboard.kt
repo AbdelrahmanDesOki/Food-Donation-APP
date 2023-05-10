@@ -10,12 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.firestore.*
+import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ItemLayoutBinding
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ListViewBinding
 
 
 class dashboard: AppCompatActivity() {
 
    private lateinit var  binding: ListViewBinding
+//   private lateinit var binding_item: ItemLayoutBinding
 //   private  var dbref : DatabaseReference?= null
    private lateinit var foodArraylist : ArrayList<Food>
 
@@ -51,6 +53,12 @@ class dashboard: AppCompatActivity() {
       val intentdetails = Intent (this, add_food::class.java)
       startActivity(intentdetails)
     }
+
+//    binding_item.cardView.setOnClickListener {
+//      val intentdetails = Intent (this, viewItem::class.java)
+//      startActivity(intentdetails)
+//    }
+
   }
 
 
