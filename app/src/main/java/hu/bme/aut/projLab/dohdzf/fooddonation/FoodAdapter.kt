@@ -42,17 +42,12 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     holder.binding.foodTitle.text = post.titleFood
     holder.binding.userDonor.text=post.userDonor
 
-   if(post.imgUrl?.isNotEmpty() == true){
+   if(post.imgUrl!!.isNotEmpty() ){
      holder.binding.imageItem.visibility = View.VISIBLE
      Glide.with(context).load(post.imgUrl).into(holder.binding.imageItem)
    }else{
      holder.binding.imageItem.visibility =View.GONE
    }
-
-    //might not work properly
-//    holder.imageFood.setImageResource(currentitem.imageFood!!)
-//    holder.titleFood.text = currentitem.titleFood
-//    holder.Userdonor.text = currentitem.userDonor
 
   }
 
@@ -66,12 +61,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
      //notifyDataSetChanged()
      notifyItemInserted(foodlist.lastIndex)
    }
-  fun removeFood(index:Int){
-    FirebaseFirestore.getInstance().collection("Users").document(foodKeys[index]).delete()
-    foodlist.removeAt(index)
-    foodKeys.removeAt(index)
-    notifyItemRemoved(index)
-  }
+
   fun removeFoodByKey(key: String) {
     val index = foodKeys.indexOf(key)
     if (index != -1) {
@@ -79,6 +69,14 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
       foodKeys.removeAt(index)
       notifyItemRemoved(index)
     }
+  }
+
+
+  fun removeFood(index:Int){
+    FirebaseFirestore.getInstance().collection("Users").document(foodKeys[index]).delete()
+    foodlist.removeAt(index)
+    foodKeys.removeAt(index)
+    notifyItemRemoved(index)
   }
 
 

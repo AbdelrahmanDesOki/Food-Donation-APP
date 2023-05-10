@@ -153,7 +153,12 @@ private fun sendItem(imageUrl: String = ""){
           .show()
       }.addOnSuccessListener { taskSnapshot ->
         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-        newImagesRef.downloadUrl.addOnCompleteListener { p0 -> sendItem(p0.result.toString()) }
+        newImagesRef.downloadUrl.addOnCompleteListener (object : OnCompleteListener<Uri>{
+          override fun onComplete(p0: Task<Uri>) {
+            sendItem(p0.result.toString())
+          }
+
+        })
       }
 
 
@@ -233,14 +238,6 @@ private fun sendItem(imageUrl: String = ""){
       binding.imgAttach.setImageBitmap(uploadBitmap)
       binding.imgAttach.visibility = View.VISIBLE
     }
-//      if(Build.VERSION.SDK_INT >= 28){
-//        val source = ImageDecoder.createSource(this.contentResolver, pickedPhoto!!)
-//        pickedBitmap = ImageDecoder.decodeBitmap(source)
-//        foodView?.setImageBitmap(pickedBitmap)
-//      }else{
-//        pickedBitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, pickedPhoto)
-//        foodView?.setImageBitmap(pickedBitmap)
-//      }
 
 
   }
