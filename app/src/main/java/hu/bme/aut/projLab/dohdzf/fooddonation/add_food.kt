@@ -106,7 +106,9 @@ private fun sendItem(imageUrl: String = ""){
     FirebaseAuth.getInstance().currentUser!!.uid,
     binding.foodTitle.text.toString(),
     binding.name.text.toString(),
-    imageUrl
+    imageUrl,
+    binding.descriptionFood.text.toString(),
+    binding.map.toString()
   )
 //  val uid = FirebaseAuth.getInstance().currentUser!!.uid
 

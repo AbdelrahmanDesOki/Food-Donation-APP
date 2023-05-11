@@ -43,6 +43,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     var post = foodlist.get(holder.adapterPosition)
     holder.binding.foodTitle.text = post.titleFood
     holder.binding.userDonor.text=post.userDonor
+    holder.binding.itemDescription.text=post.description
 
    if(post.imgUrl!!.isNotEmpty() ){
      holder.binding.imageItem.visibility = View.VISIBLE

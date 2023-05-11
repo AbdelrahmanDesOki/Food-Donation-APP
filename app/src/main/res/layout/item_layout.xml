@@ -58,8 +58,20 @@
         android:text="Name of Donor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.294"
-        app:layout_constraintStart_toStartOf="@+id/food_title"
+        app:layout_constraintStart_toEndOf="@+id/imageItem"
         app:layout_constraintTop_toBottomOf="@+id/food_title" />
+
+      <TextView
+        android:id="@+id/itemDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:text="Description of Item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.294"
+        app:layout_constraintStart_toEndOf="@+id/imageItem"
+        app:layout_constraintTop_toBottomOf="@+id/userDonor" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.cardview.widget.CardView>
