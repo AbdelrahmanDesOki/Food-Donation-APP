@@ -22,8 +22,10 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.AddFoodBinding
 import java.io.ByteArrayOutputStream
 import java.net.URLEncoder
@@ -90,7 +92,7 @@ class add_food:AppCompatActivity() {
     binding.add.setOnClickListener {
 
       sendItem("")
-
+      uploadImage()
       val intent = Intent(this, dashboard::class.java)
       startActivity(intent)
       finish()
@@ -121,17 +123,19 @@ private fun sendItem(imageUrl: String = ""){
 
 }
 
-   fun send(v: View){
-    if(uploadBitmap == null){
-         sendItem()
-    }else{
-      try {
-          uploadImage()
-      }catch (e: java.lang.Exception){
-        e.printStackTrace()
-      }
-    }
-  }
+
+//   fun send(v: View){
+//    if(uploadBitmap == null){
+//         uploadImage()
+//         sendItem()
+//    }else{
+//      try {
+//          uploadImage()
+//      }catch (e: java.lang.Exception){
+//        e.printStackTrace()
+//      }
+//    }
+//  }
 
 
 @Throws(Exception::class)
@@ -148,7 +152,8 @@ private fun sendItem(imageUrl: String = ""){
     uploadBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
     val imageInBytes = baos.toByteArray()
 
-    val storageRef = FirebaseStorage.getInstance().getReference("Users")
+//    val storageRef = FirebaseStorage.getInstance().getReference("Users")
+     val storageRef = Firebase.storage.reference
     val newImage = URLEncoder.encode(UUID.randomUUID().toString(), "UTF-8") + ".jpg"
     val newImagesRef = storageRef.child("Users/$newImage")
     newImagesRef.putBytes(imageInBytes)

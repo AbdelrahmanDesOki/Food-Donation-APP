@@ -54,10 +54,7 @@ class dashboard: AppCompatActivity() {
       startActivity(intentdetails)
     }
 
-//    binding_item.cardView.setOnClickListener {
-//      val intentdetails = Intent (this, viewItem::class.java)
-//      startActivity(intentdetails)
-//    }
+
 
   }
 

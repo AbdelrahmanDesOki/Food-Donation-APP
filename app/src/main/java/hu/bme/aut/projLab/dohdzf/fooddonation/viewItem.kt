@@ -14,5 +14,11 @@ class viewItem: AppCompatActivity() {
     super.onCreate(savedInstanceState)
     binding = ViewFoodBinding.inflate(layoutInflater)
     setContentView(binding.root)
+    //Intent put extra
+    //    intent.extras
+    var food =  intent.getSerializableExtra("KEy") as Food
+    binding.title.text = food.titleFood
+
+
   }
 }

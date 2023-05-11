@@ -5,10 +5,12 @@ package hu.bme.aut.projLab.dohdzf.fooddonation
 import android.view.LayoutInflater
 import android.view.View
 import android.content.Context
+import android.content.Intent
 
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
@@ -48,6 +50,12 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
    }else{
      holder.binding.imageItem.visibility =View.GONE
    }
+
+        holder.binding.cardView.setOnClickListener {
+      val intentdetails = Intent (context as dashboard, viewItem::class.java)
+        intentdetails.putExtra("KEy", post)
+          (context as dashboard).startActivity(intentdetails)
+    }
 
   }
 
