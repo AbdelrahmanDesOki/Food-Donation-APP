@@ -87,25 +87,6 @@ private fun getFoodData() {
   )
 
 
-
-//  dbref = FirebaseDatabase.getInstance().getReference("Users")
-//  dbref!!.addValueEventListener(object : ValueEventListener {
-//    override fun onDataChange(snapshot: DataSnapshot) {
-//
-//      if(snapshot.exists()){
-//        for(foodSnapShot in snapshot.children){
-//          val food = foodSnapShot.getValue(Food::class.java)
-//          //all data fetched in this arraylist
-//          foodArraylist.add(food!!)
-//        }
-//        foodRecyclerView?.adapter = FoodAdapter(context as dashboard, FirebaseAuth.getInstance().currentUser!!.uid)
-//      }
-//    }
-//
-//    override fun onCancelled(error: DatabaseError) {
-//      TODO("Not yet implemented")
-//    }
-//  })
 }
 
 

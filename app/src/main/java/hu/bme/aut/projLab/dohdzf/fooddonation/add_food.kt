@@ -80,6 +80,8 @@ class add_food:AppCompatActivity() {
       } catch (e: Exception) {
         e.printStackTrace()
       }
+//      binding.imageFood.isClickable= false
+      binding.imageFood.visibility= View.GONE
     }
 
 
@@ -91,8 +93,16 @@ class add_food:AppCompatActivity() {
 
     binding.add.setOnClickListener {
 
-      sendItem("")
-      uploadImage()
+      if(uploadBitmap == null){
+        sendItem("")
+      }else{
+      try {
+          uploadImage()
+      }catch (e: java.lang.Exception){
+        e.printStackTrace()
+      }
+    }
+
       val intent = Intent(this, dashboard::class.java)
       startActivity(intent)
       finish()
@@ -127,28 +137,8 @@ private fun sendItem(imageUrl: String = ""){
 }
 
 
-//   fun send(v: View){
-//    if(uploadBitmap == null){
-//         uploadImage()
-//         sendItem()
-//    }else{
-//      try {
-//          uploadImage()
-//      }catch (e: java.lang.Exception){
-//        e.printStackTrace()
-//      }
-//    }
-//  }
-
-
 @Throws(Exception::class)
   private fun uploadImage() {
-
-    //check how to access photo from gallery
-//    imageUri = Uri.parse("android.resource://$packageName/${R.drawable.kiwi}")
-////    imageUri = Uri.parse(binding.imageFood.toString())
-
-
 
 
     val baos = ByteArrayOutputStream()
@@ -172,19 +162,6 @@ private fun sendItem(imageUrl: String = ""){
 
         })
       }
-
-
-//    storageReference = FirebaseStorage.getInstance().getReference("Users/"+ auth.currentUser?.uid)
-//    storageReference.putFile(imageUri).addOnSuccessListener{
-//      Toast.makeText(this,"Photo Uploaded Successfully ", Toast.LENGTH_LONG).show()
-//    }.addOnFailureListener{
-//      Toast.makeText(this,"FAiled to Upload data ", Toast.LENGTH_LONG).show()
-//    }
-
-
-
-
-
   }
 
 
