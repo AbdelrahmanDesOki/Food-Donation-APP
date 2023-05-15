@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.ViewModel
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.SignupBinding
@@ -27,8 +29,12 @@ class viewItem: AppCompatActivity() {
     binding.name.text = food.userDonor
     binding.description.text=food.description
     binding.contact.text=food.email
+
+
+
 //    this.context = viewItem
-//    Glide.with(context as viewItem).load(food.imgUrl).into(binding.image)
+    binding.image.visibility= View.VISIBLE
+    Glide.with(this.context ).load(food.imgUrl).into(binding.image)
 
 
 

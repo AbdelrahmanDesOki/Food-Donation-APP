@@ -86,16 +86,17 @@
     app:layout_constraintTop_toBottomOf="@+id/contact" />
 
 
-
   <TextView
     android:id="@+id/textView5"
     android:layout_width="405dp"
     android:layout_height="62dp"
     android:layout_marginTop="12dp"
     android:background="#f8f9fa"
+    android:backgroundTint="@android:color/holo_blue_bright"
     android:paddingLeft="20dp"
     android:paddingTop="20dp"
     android:text="Everything in this page is given away for free ❣️"
+    android:textSize="18dp"
     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.0"
