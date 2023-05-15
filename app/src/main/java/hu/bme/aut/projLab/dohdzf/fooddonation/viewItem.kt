@@ -2,6 +2,7 @@ package hu.bme.aut.projLab.dohdzf.fooddonation
 
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -44,6 +45,9 @@ class viewItem: AppCompatActivity() {
         }else{
           Toast.makeText(this, "FAiled to send the emaill️", Toast.LENGTH_SHORT).show()
         }
+        val intent = Intent(this, dashboard::class.java)
+        startActivity(intent)
+        finish()
       }
     }
   }

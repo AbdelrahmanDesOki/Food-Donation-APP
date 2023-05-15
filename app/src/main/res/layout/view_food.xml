@@ -76,7 +76,6 @@
     android:id="@+id/request"
     android:layout_width="267dp"
     android:layout_height="64dp"
-    android:layout_marginBottom="64dp"
     android:backgroundTint="@android:color/holo_blue_bright"
     android:text="Request this"
     android:textAllCaps="false"
@@ -84,7 +83,7 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/contact"/>
+    app:layout_constraintTop_toBottomOf="@+id/contact" />
 
 
 
@@ -105,14 +104,15 @@
 
   <TextView
     android:id="@+id/contact"
-    android:layout_width="225dp"
+    android:layout_width="360dp"
     android:layout_height="50dp"
     android:layout_marginTop="4dp"
+    android:background="#45AFC1"
     android:text="Contact Email address"
     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
     android:textSize="20sp"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.086"
+    app:layout_constraintHorizontal_bias="0.313"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
