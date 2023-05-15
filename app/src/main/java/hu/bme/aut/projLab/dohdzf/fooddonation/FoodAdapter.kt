@@ -56,6 +56,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         holder.binding.cardView.setOnClickListener {
       val intentdetails = Intent (context as dashboard, viewItem::class.java)
         intentdetails.putExtra("KEy", post)
+          intentdetails.putExtra("photo", post.imgUrl)
           (context as dashboard).startActivity(intentdetails)
     }
 

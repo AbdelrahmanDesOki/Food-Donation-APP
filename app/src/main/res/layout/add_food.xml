@@ -4,6 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:background="@drawable/choco"
   tools:context=".add_food">
 
   <TextView
@@ -22,9 +23,10 @@
 
   <Button
     android:id="@+id/imageFood"
-    android:layout_width="360dp"
+    android:layout_width="160dp"
     android:layout_height="110dp"
-    android:layout_marginHorizontal="20dp"
+    android:layout_marginHorizontal="110dp"
+    android:clickable="true"
     android:layout_marginTop="32dp"
     android:text="Upload Your Picture"
     android:backgroundTint="@color/cardview_shadow_start_color"

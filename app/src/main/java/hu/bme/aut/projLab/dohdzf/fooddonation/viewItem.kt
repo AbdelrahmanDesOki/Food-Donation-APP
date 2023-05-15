@@ -25,6 +25,7 @@ class viewItem: AppCompatActivity() {
     //Intent put extra
     //    intent.extras
     var food =  intent.getSerializableExtra("KEy") as Food
+    var photo = intent.getStringExtra("photo")
     binding.title.text = food.titleFood
     binding.name.text = food.userDonor
     binding.description.text=food.description
@@ -32,9 +33,8 @@ class viewItem: AppCompatActivity() {
 
 
 
-//    this.context = viewItem
     binding.image.visibility= View.VISIBLE
-    Glide.with(this.context ).load(food.imgUrl).into(binding.image)
+    Glide.with(this ).load(photo).into(binding.image)
 
 
 
