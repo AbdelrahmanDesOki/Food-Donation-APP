@@ -83,7 +83,8 @@
     android:textSize="20sp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent" />
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/contact"/>
 
 
 
@@ -101,6 +102,19 @@
     app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/address" />
+
+  <TextView
+    android:id="@+id/contact"
+    android:layout_width="225dp"
+    android:layout_height="50dp"
+    android:layout_marginTop="4dp"
+    android:text="Contact Email address"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="20sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.086"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

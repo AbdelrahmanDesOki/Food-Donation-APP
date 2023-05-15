@@ -45,6 +45,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     holder.binding.userDonor.text=post.userDonor
     holder.binding.itemDescription.text=post.description
 
+
    if(post.imgUrl!!.isNotEmpty() ){
      holder.binding.imageItem.visibility = View.VISIBLE
      Glide.with(context).load(post.imgUrl).into(holder.binding.imageItem)

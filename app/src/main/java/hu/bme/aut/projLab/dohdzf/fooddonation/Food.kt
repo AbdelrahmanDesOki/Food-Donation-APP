@@ -11,5 +11,6 @@ data class Food(
   var userDonor: String ?= null,
   var imgUrl: String ?= null,
   var description: String ?= null,
-  var address: String ?= null
+  var address: String ?= null,
+  var email: String ?= null
       ): Serializable
