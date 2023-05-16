@@ -20,7 +20,7 @@ import java.util.*
 
 
 //Need to fix how to move marker on map
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider.OnNewLocationAvailable {
 
     private lateinit var binding: ActivityMapsBinding
     private lateinit var mMap : GoogleMap
@@ -28,6 +28,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private val permissionCode = 101
     lateinit var currentMarker: Marker
+    private lateinit var myLocationProvider: MyLocationProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         getCurrentLocationUser()
-       
+
     }
 
   private fun getCurrentLocationUser(){
@@ -46,6 +47,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
       ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
     ){
       ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), permissionCode)
+      myLocationProvider = MyLocationProvider(this, this)
+      myLocationProvider.startLocationMonitoring()
       return
     }
 
@@ -120,5 +123,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
    val geocoder = Geocoder(this, Locale.getDefault())
     val address =  geocoder.getFromLocation(lat,lon, 1)
     return address[0].getAddressLine(0).toString()
+  }
+
+  override fun onNewLocation(location: Location) {
+    var prevLocation: Location? = null
+    var distance: Float = 0f
+    if (location.accuracy < 25) {
+      if (prevLocation != null) {
+        if (location.distanceTo(prevLocation)>3) {
+          distance += location.distanceTo(prevLocation)
+        }
+      }
+      prevLocation = location
+    }
+    mMap.animateCamera(CameraUpdateFactory.newLatLng(LatLng(location.latitude, location.longitude)))
   }
 }
