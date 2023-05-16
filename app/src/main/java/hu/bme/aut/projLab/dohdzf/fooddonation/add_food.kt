@@ -1,8 +1,7 @@
 package hu.bme.aut.projLab.dohdzf.fooddonation
 
-import android.Manifest
+
 import android.app.Activity
-import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -11,52 +10,36 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.AddFoodBinding
 import java.io.ByteArrayOutputStream
 import java.net.URLEncoder
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.jvm.Throws
 
-//import kotlinx.android.synthetic.main.add_food.*
 
 
 class add_food:AppCompatActivity() {
-//  private lateinit var dbref : DatabaseReference
-//  private lateinit var foodRecyclerView : RecyclerView
+
     private lateinit var binding: AddFoodBinding
-//  private lateinit var foodArraylist : ArrayList<Food>
-
-
-//    private lateinit var _binding: FragmentHomeBinding
     private lateinit var auth: FirebaseAuth
-//   private lateinit var storageReference: StorageReference
-//   private lateinit var imageUri: Uri
-   var uploadBitmap: Bitmap? = null
-//  private lateinit var db : DatabaseReference
+    var uploadBitmap: Bitmap? = null
+    private lateinit var foodAdapter: FoodAdapter
 
-  companion object {
+    companion object {
     private const val PERMISSION_REQUEST_CODE = 1001
     private const val CAMERA_REQUEST_CODE = 1002
-  }
+     }
 
 
- private lateinit var foodAdapter: FoodAdapter
 
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,12 +48,6 @@ class add_food:AppCompatActivity() {
     setContentView(binding.root)
     //validation with User id to store data
     auth = FirebaseAuth.getInstance()
-    val uid = auth.currentUser?.uid
-//    db = FirebaseDatabase.getInstance().getReference("Users")
-
-
-//     foodView  = binding.imageFood
-
     binding.imageFood.setOnClickListener {
       try {
         startActivityForResult(
@@ -80,7 +57,6 @@ class add_food:AppCompatActivity() {
       } catch (e: Exception) {
         e.printStackTrace()
       }
-//      binding.imageFood.isClickable= false
       binding.imageFood.visibility= View.GONE
     }
 
@@ -102,7 +78,6 @@ class add_food:AppCompatActivity() {
         e.printStackTrace()
       }
     }
-
       val intent = Intent(this, dashboard::class.java)
       startActivity(intent)
       finish()
@@ -121,10 +96,8 @@ private fun sendItem(imageUrl: String = ""){
     binding.map.toString(),
     binding.emailContact.text.toString()
   )
-//  val uid = FirebaseAuth.getInstance().currentUser!!.uid
 
   var usercollection = FirebaseFirestore.getInstance().collection("Users")
-
   usercollection
     .add(food)
     .addOnSuccessListener {
@@ -133,20 +106,16 @@ private fun sendItem(imageUrl: String = ""){
     .addOnFailureListener{
       Toast.makeText(this@add_food,"Failed to Upload Data ", Toast.LENGTH_LONG).show()
     }
-
 }
 
 
 @Throws(Exception::class)
   private fun uploadImage() {
 
-
     val baos = ByteArrayOutputStream()
     uploadBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
     val imageInBytes = baos.toByteArray()
-
-//    val storageRef = FirebaseStorage.getInstance().getReference("Users")
-     val storageRef = Firebase.storage.reference
+    val storageRef = Firebase.storage.reference
     val newImage = URLEncoder.encode(UUID.randomUUID().toString(), "UTF-8") + ".jpg"
     val newImagesRef = storageRef.child("Users/$newImage")
     newImagesRef.putBytes(imageInBytes)
@@ -154,7 +123,6 @@ private fun sendItem(imageUrl: String = ""){
         Toast.makeText(this, exception.message, Toast.LENGTH_SHORT)
           .show()
       }.addOnSuccessListener { taskSnapshot ->
-        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
         newImagesRef.downloadUrl.addOnCompleteListener (object : OnCompleteListener<Uri>{
           override fun onComplete(p0: Task<Uri>) {
             sendItem(p0.result.toString())
@@ -163,12 +131,6 @@ private fun sendItem(imageUrl: String = ""){
         })
       }
   }
-
-
-
-
-
-
 
 
 
@@ -214,10 +176,7 @@ private fun sendItem(imageUrl: String = ""){
           Toast.makeText(this, "CAMERA permission is NOT granted", Toast.LENGTH_SHORT).show()
         }
       }
-
     }
-
-
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -227,10 +186,5 @@ private fun sendItem(imageUrl: String = ""){
       binding.imgAttach.setImageBitmap(uploadBitmap)
       binding.imgAttach.visibility = View.VISIBLE
     }
-
-
   }
-
-
-
 }
