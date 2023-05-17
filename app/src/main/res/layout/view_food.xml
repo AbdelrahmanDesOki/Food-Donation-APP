@@ -116,7 +116,7 @@
     android:background="#45AFC1"
     android:text="Contact Email address"
     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-    android:textSize="20sp"
+    android:textSize="12dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.313"
     app:layout_constraintStart_toStartOf="parent"

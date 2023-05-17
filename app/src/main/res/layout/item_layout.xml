@@ -33,21 +33,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_launcher_background" />
 
+
       <TextView
         android:id="@+id/food_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="4dp"
         android:background="@color/white"
         android:text="Title"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.326"
+        app:layout_constraintHorizontal_bias="0.373"
         app:layout_constraintStart_toEndOf="@+id/imageItem"
         app:layout_constraintTop_toTopOf="parent" />
-
 
       <TextView
         android:id="@+id/userDonor"
@@ -73,6 +73,19 @@
         app:layout_constraintStart_toEndOf="@+id/imageItem"
         app:layout_constraintTop_toBottomOf="@+id/userDonor" />
 
+
+      <TextView
+        android:id="@+id/itemLocation"
+        android:layout_width="240dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:text="Location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.294"
+        app:layout_constraintStart_toEndOf="@+id/imageItem"
+        app:layout_constraintTop_toBottomOf="@+id/itemDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.cardview.widget.CardView>
 

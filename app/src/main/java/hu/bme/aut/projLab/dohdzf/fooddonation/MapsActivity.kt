@@ -1,10 +1,14 @@
 package hu.bme.aut.projLab.dohdzf.fooddonation
 
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -17,7 +21,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ActivityMapsBinding
 import java.util.*
-
+//import com.sucho
 
 //Need to fix how to move marker on map
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider.OnNewLocationAvailable {
@@ -29,6 +33,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
     private val permissionCode = 101
     lateinit var currentMarker: Marker
     private lateinit var myLocationProvider: MyLocationProvider
+    private lateinit var food: Food
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +44,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         getCurrentLocationUser()
+
+        binding.getLocation.setOnClickListener {
+
+          food.address = binding.locationText.text.toString()
+
+          finish()
+
+        }
 
     }
 
@@ -112,18 +125,25 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
     val markerOptions = MarkerOptions().position(latlng).title("Current Location")
         .snippet(getAddress(latlng.latitude, latlng.longitude))
           .draggable(true)
+
       .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
           mMap.animateCamera(CameraUpdateFactory.newLatLng(latlng))
           mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 7f))
           currentMarker = mMap.addMarker(markerOptions)!!
           currentMarker?.showInfoWindow()
+//    this.currentlocation = latlng
+//    this.currentlocation.latitude = latlng.latitude
+//    this.currentlocation.longitude = latlng.longitude
   }
 
   private fun getAddress(lat: Double, lon: Double) : String?  {
    val geocoder = Geocoder(this, Locale.getDefault())
     val address =  geocoder.getFromLocation(lat,lon, 1)
+    binding.locationText.text = address[0].getAddressLine(0).toString()
     return address[0].getAddressLine(0).toString()
   }
+//  val latlong = LatLng(currentlocation?.latitude!!,  currentlocation?.longitude!!)
+
 
   override fun onNewLocation(location: Location) {
     var prevLocation: Location? = null
@@ -138,4 +158,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
     }
     mMap.animateCamera(CameraUpdateFactory.newLatLng(LatLng(location.latitude, location.longitude)))
   }
+
+//  var addr = getAddress(currentlocation?.latitude!!,currentlocation?.longitude!!)
+
+//  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//    super.onActivityResult(requestCode, resultCode, data)
+//    if (requestCode == 101 && resultCode == Activity.RESULT_OK) {
+//      addr = data!!.extras!!.get("data") as String?
+////      binding.locationText.text=food.address
+//      food.address=binding.locationText.text.toString()
+////      binding.imgAttach.setImageBitmap(uploadBitmap)
+////      binding.imgAttach.visibility = View.VISIBLE
+//    }
+//  }
 }

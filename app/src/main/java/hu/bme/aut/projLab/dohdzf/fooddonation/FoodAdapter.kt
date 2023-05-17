@@ -44,6 +44,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     holder.binding.foodTitle.text = post.titleFood
     holder.binding.userDonor.text=post.userDonor
     holder.binding.itemDescription.text=post.description
+    holder.binding.itemLocation.text=post.address
 
 
    if(post.imgUrl!!.isNotEmpty() ){
@@ -55,7 +56,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
         holder.binding.cardView.setOnClickListener {
       val intentdetails = Intent (context as dashboard, viewItem::class.java)
-        intentdetails.putExtra("KEy", post)
+          intentdetails.putExtra("KEy", post)
           intentdetails.putExtra("photo", post.imgUrl)
           (context as dashboard).startActivity(intentdetails)
     }

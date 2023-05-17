@@ -62,9 +62,12 @@ class add_food:AppCompatActivity() {
 
 
     binding.map.setOnClickListener{
+
+//      startActivityForResult(Intent(this, MapsActivity::class.java), 101)
       val intent = Intent(this, MapsActivity::class.java)
       startActivity(intent)
-      finish()
+
+//      finish()
     }
 
     binding.add.setOnClickListener {

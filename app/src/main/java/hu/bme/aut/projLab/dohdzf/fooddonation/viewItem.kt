@@ -30,7 +30,7 @@ class viewItem: AppCompatActivity() {
     binding.name.text = food.userDonor
     binding.description.text=food.description
     binding.contact.text=food.email
-
+    binding.address.text=food.address
 
 
     binding.image.visibility= View.VISIBLE
