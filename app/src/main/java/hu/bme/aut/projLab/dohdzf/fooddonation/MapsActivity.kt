@@ -33,7 +33,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
     private val permissionCode = 101
     lateinit var currentMarker: Marker
     private lateinit var myLocationProvider: MyLocationProvider
-    private lateinit var food: Food
+    var food: Food ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +47,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
 
         binding.getLocation.setOnClickListener {
 
-          food.address=binding.locationText.text.toString()
+
 
           finish()
 
@@ -140,6 +140,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
    val geocoder = Geocoder(this, Locale.getDefault())
     val address =  geocoder.getFromLocation(lat,lon, 1)
     binding.locationText.text = address[0].getAddressLine(0).toString()
+    food?.address =binding.locationText.text.toString()
     return address[0].getAddressLine(0).toString()
   }
 //  val latlong = LatLng(currentlocation?.latitude!!,  currentlocation?.longitude!!)
