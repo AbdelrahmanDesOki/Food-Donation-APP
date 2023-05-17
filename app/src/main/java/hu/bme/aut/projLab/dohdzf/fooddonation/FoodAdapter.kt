@@ -22,7 +22,7 @@ import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ItemLayoutBinding
 
 class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
-   private val foodlist = ArrayList<Food>()
+    var foodlist = ArrayList<Food>()
   var foodKeys = mutableListOf<String>()
    lateinit var currentUid: String
     lateinit var context: Context

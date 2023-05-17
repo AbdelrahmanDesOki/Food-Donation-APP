@@ -47,7 +47,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
 
         binding.getLocation.setOnClickListener {
 
-          food.address = binding.locationText.text.toString()
+          food.address=binding.locationText.text.toString()
 
           finish()
 
