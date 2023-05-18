@@ -34,6 +34,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
     lateinit var currentMarker: Marker
     private lateinit var myLocationProvider: MyLocationProvider
     var food: Food ?= null
+  private lateinit var locationString: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,13 +42,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         getCurrentLocationUser()
 
         binding.getLocation.setOnClickListener {
 
-
+        intent.putExtra("loc",binding.locationText.text.toString())
 
           finish()
 
@@ -139,9 +141,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
   private fun getAddress(lat: Double, lon: Double) : String?  {
    val geocoder = Geocoder(this, Locale.getDefault())
     val address =  geocoder.getFromLocation(lat,lon, 1)
-    binding.locationText.text = address[0].getAddressLine(0).toString()
+    locationString = address[0].getAddressLine(0).toString()
+    binding.locationText.text = locationString
     food?.address =binding.locationText.text.toString()
-    return address[0].getAddressLine(0).toString()
+//    food?.address =address[0].getAddressLine(0).toString()
+
+    return locationString
   }
 //  val latlong = LatLng(currentlocation?.latitude!!,  currentlocation?.longitude!!)
 

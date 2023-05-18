@@ -46,6 +46,9 @@ class add_food:AppCompatActivity() {
     super.onCreate(savedInstanceState)
     binding = AddFoodBinding.inflate(layoutInflater)
     setContentView(binding.root)
+
+
+
     //validation with User id to store data
     auth = FirebaseAuth.getInstance()
     binding.imageFood.setOnClickListener {
@@ -66,6 +69,12 @@ class add_food:AppCompatActivity() {
 //      startActivityForResult(Intent(this, MapsActivity::class.java), 101)
       val intent = Intent(this, MapsActivity::class.java)
       startActivity(intent)
+
+      //updating location
+      var location = intent.getStringExtra("loc")
+      binding.loc.text=location.toString()
+
+
 
 //      finish()
     }
@@ -96,7 +105,7 @@ private fun sendItem(imageUrl: String = ""){
     binding.name.text.toString(),
     imageUrl,
     binding.descriptionFood.text.toString(),
-    binding.map.toString(),
+    binding.loc.text.toString(),
     binding.emailContact.text.toString()
   )
 
