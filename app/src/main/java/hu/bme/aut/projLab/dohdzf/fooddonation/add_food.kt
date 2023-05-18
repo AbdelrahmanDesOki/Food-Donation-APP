@@ -47,7 +47,7 @@ class add_food:AppCompatActivity() {
     binding = AddFoodBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
-
+    binding.add.visibility= View.GONE
 
     //validation with User id to store data
     auth = FirebaseAuth.getInstance()
@@ -66,17 +66,18 @@ class add_food:AppCompatActivity() {
 
     binding.map.setOnClickListener{
 
-//      startActivityForResult(Intent(this, MapsActivity::class.java), 101)
-      val intent = Intent(this, MapsActivity::class.java)
-      startActivity(intent)
+      startActivityForResult(Intent(this, MapsActivity::class.java), 101)
+//      val intent = Intent(this, MapsActivity::class.java)
+//      startActivity(intent)
 
       //updating location
-      var location = intent.getStringExtra("loc")
-      binding.loc.text=location.toString()
+//      var location = intent.getStringExtra("loc")
+//      binding.loc.text=location.toString()
 
 
 
 //      finish()
+      binding.add.visibility= View.VISIBLE
     }
 
     binding.add.setOnClickListener {

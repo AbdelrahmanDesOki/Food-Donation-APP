@@ -100,7 +100,7 @@
     android:backgroundTint="@android:color/holo_blue_bright"
     android:paddingLeft="20dp"
     android:paddingTop="20dp"
-    android:text="Everything in this page is given away for free ❣️"
+    android:text="Everything here is given away for free ❣️"
     android:textSize="16dp"
     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
     app:layout_constraintEnd_toEndOf="parent"

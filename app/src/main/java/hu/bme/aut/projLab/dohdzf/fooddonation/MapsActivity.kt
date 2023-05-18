@@ -49,7 +49,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
 
         binding.getLocation.setOnClickListener {
 
-        intent.putExtra("loc",binding.locationText.text.toString())
+//        intent.putExtra("loc",binding.locationText.text.toString())
 
           finish()
 
@@ -167,14 +167,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
 
 //  var addr = getAddress(currentlocation?.latitude!!,currentlocation?.longitude!!)
 
-//  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//    super.onActivityResult(requestCode, resultCode, data)
-//    if (requestCode == 101 && resultCode == Activity.RESULT_OK) {
-//      addr = data!!.extras!!.get("data") as String?
-////      binding.locationText.text=food.address
-//      food.address=binding.locationText.text.toString()
-////      binding.imgAttach.setImageBitmap(uploadBitmap)
-////      binding.imgAttach.visibility = View.VISIBLE
-//    }
-//  }
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+    if (requestCode == 101 && resultCode == Activity.RESULT_OK) {
+      locationString = data!!.extras!!.get("data").toString()
+//      binding.locationText.text=food.address
+      food?.address =binding.locationText.text.toString()
+//      binding.imgAttach.setImageBitmap(uploadBitmap)
+//      binding.imgAttach.visibility = View.VISIBLE
+    }
+  }
 }
