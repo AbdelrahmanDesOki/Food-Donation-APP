@@ -20,7 +20,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@color/white"
+      android:background="@drawable/sky"
       android:elevation="10dp"
       android:padding="20dp">
 
@@ -77,8 +77,8 @@
       <TextView
         android:id="@+id/itemLocation"
         android:layout_width="240dp"
-        android:layout_marginHorizontal="10dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
         android:background="@color/white"
         android:text="Location"
@@ -87,6 +87,7 @@
         app:layout_constraintStart_toEndOf="@+id/imageItem"
         app:layout_constraintTop_toBottomOf="@+id/itemDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
   </androidx.cardview.widget.CardView>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

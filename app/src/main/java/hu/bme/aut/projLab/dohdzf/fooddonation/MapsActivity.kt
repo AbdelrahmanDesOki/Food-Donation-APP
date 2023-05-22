@@ -70,23 +70,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
       return
     }
 
-    val getLocation = fusedLocationProviderClient?.lastLocation
+//    val getLocation = fusedLocationProviderClient?.lastLocation
 
 //      getLocation?.addOnSuccessListener {
-//
 //      location
-
 //        this.currentlocation = location
         val mapFragment = supportFragmentManager
           .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 //
 //      if(location != null ){
-//
-//
 //        Toast.makeText(applicationContext, currentlocation.latitude.toString() + " " + currentlocation.longitude.toString(), Toast.LENGTH_LONG ).show()
-//
-//
 //
 //      }
 //    }
@@ -180,10 +174,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
       locationString = data!!.extras!!.get("data").toString()
       binding.locationText.text = locationString
       food?.address =binding.locationText.text.toString()
-//      binding.locationText.text=food.address
-//      food?.address =binding.locationText.text.toString()
-//      binding.imgAttach.setImageBitmap(uploadBitmap)
-//      binding.imgAttach.visibility = View.VISIBLE
+
     }
   }
 

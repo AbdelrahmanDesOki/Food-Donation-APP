@@ -32,7 +32,6 @@ class add_food:AppCompatActivity() {
     private lateinit var binding: AddFoodBinding
     private lateinit var auth: FirebaseAuth
     var uploadBitmap: Bitmap? = null
-    private lateinit var foodAdapter: FoodAdapter
 
     companion object {
     private const val PERMISSION_REQUEST_CODE = 1001
@@ -51,6 +50,7 @@ class add_food:AppCompatActivity() {
 
     //validation with User id to store data
     auth = FirebaseAuth.getInstance()
+
     binding.imageFood.setOnClickListener {
       try {
         startActivityForResult(
@@ -67,14 +67,19 @@ class add_food:AppCompatActivity() {
     binding.map.setOnClickListener{
 
       startActivityForResult(Intent(this, MapsActivity::class.java), 101)
-//      val intent = Intent(this, MapsActivity::class.java)
-//      startActivity(intent)
 
+      if(
+        binding.foodTitle.text.toString().isNotEmpty() ||
+        binding.name.text.toString().isNotEmpty() ||
+        binding.emailContact.text.toString().isNotEmpty()
+       )
+      {
+        binding.add.visibility= View.VISIBLE
+      }
 
-
-//      finish()
-      binding.add.visibility= View.VISIBLE
     }
+
+
 
     binding.add.setOnClickListener {
 
@@ -160,7 +165,6 @@ private fun sendItem(imageUrl: String = ""){
           "I need it for camera", Toast.LENGTH_SHORT
         ).show()
       }
-
       ActivityCompat.requestPermissions(
         this,
         arrayOf(android.Manifest.permission.CAMERA),
@@ -190,16 +194,16 @@ private fun sendItem(imageUrl: String = ""){
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
+    //used for camera data
     if (requestCode == CAMERA_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
       uploadBitmap = data!!.extras!!.get("data") as Bitmap
       binding.imgAttach.setImageBitmap(uploadBitmap)
       binding.imgAttach.visibility = View.VISIBLE
     }
+    //used for maps data
     if(requestCode == 101 && resultCode == Activity.RESULT_OK){
 
-      //updating location
       var location = data!!.getStringExtra("loc")
-
       binding.loc.text=location.toString()
 
     }

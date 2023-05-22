@@ -84,21 +84,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
   }
 
 
-  fun removeFood(index:Int){
-    FirebaseFirestore.getInstance().collection("Users").document(foodKeys[index]).delete()
-    foodlist.removeAt(index)
-    foodKeys.removeAt(index)
-    notifyItemRemoved(index)
-  }
 
-
-    fun updateFoodlist(foodlist: List<Food >){
-
-      this.foodlist.clear()
-      this.foodlist.addAll(foodlist)
-      notifyDataSetChanged()
-
-    }
 
   inner class ViewHolder(val binding: ItemLayoutBinding): RecyclerView.ViewHolder(binding.root){}
 

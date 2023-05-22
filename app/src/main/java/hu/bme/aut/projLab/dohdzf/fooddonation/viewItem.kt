@@ -22,10 +22,10 @@ class viewItem: AppCompatActivity() {
     super.onCreate(savedInstanceState)
     binding = ViewFoodBinding.inflate(layoutInflater)
     setContentView(binding.root)
-    //Intent put extra
-    //    intent.extras
+
     var food =  intent.getSerializableExtra("KEy") as Food
     var photo = intent.getStringExtra("photo")
+
     binding.title.text = food.titleFood
     binding.name.text = food.userDonor
     binding.description.text=food.description
