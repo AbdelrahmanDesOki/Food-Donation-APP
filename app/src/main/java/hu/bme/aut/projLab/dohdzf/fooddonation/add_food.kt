@@ -70,10 +70,6 @@ class add_food:AppCompatActivity() {
 //      val intent = Intent(this, MapsActivity::class.java)
 //      startActivity(intent)
 
-      //updating location
-//      var location = intent.getStringExtra("loc")
-//      binding.loc.text=location.toString()
-
 
 
 //      finish()
@@ -198,6 +194,14 @@ private fun sendItem(imageUrl: String = ""){
       uploadBitmap = data!!.extras!!.get("data") as Bitmap
       binding.imgAttach.setImageBitmap(uploadBitmap)
       binding.imgAttach.visibility = View.VISIBLE
+    }
+    if(requestCode == 101 && resultCode == Activity.RESULT_OK){
+
+      //updating location
+      var location = data!!.getStringExtra("loc")
+
+      binding.loc.text=location.toString()
+
     }
   }
 }
