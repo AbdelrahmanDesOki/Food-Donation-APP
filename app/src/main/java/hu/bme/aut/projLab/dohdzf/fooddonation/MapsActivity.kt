@@ -23,13 +23,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
 
     private lateinit var binding: ActivityMapsBinding
     private lateinit var mMap : GoogleMap
-    private lateinit var currentlocation: Location
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var myLocationProvider: MyLocationProvider
+    private lateinit var locationString: String
     private val permissionCode = 101
     lateinit var currentMarker: Marker
-    private lateinit var myLocationProvider: MyLocationProvider
     var food: Food?= null
-  private lateinit var locationString: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,17 +36,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         getCurrentLocationUser()
 
         binding.getLocation.setOnClickListener {
+
           var intent = Intent()
           intent.putExtra("loc", binding.locationText.text.toString())
           setResult(Activity.RESULT_OK, intent)
-//        intent.putExtra("loc",binding.locationText.text.toString())
 
           finish()
 
@@ -65,21 +62,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
       return
     }
 
-//    val getLocation = fusedLocationProviderClient?.lastLocation
-
-//      getLocation?.addOnSuccessListener {
-//      location
-//        this.currentlocation = location
         val mapFragment = supportFragmentManager
           .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-//
-//      if(location != null ){
-//        Toast.makeText(applicationContext, currentlocation.latitude.toString() + " " + currentlocation.longitude.toString(), Toast.LENGTH_LONG ).show()
-//
-//      }
-//    }
-
   }
 
   override fun onRequestPermissionsResult(
@@ -98,8 +83,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
     override fun onMapReady(googleMap: GoogleMap) {
      mMap = googleMap
 
-//      val latlong = LatLng(currentlocation?.latitude!!,  currentlocation?.longitude!!)
-      val latlong = LatLng(47.0,19.0)
+      val latlong = LatLng(47.4733781,19.059865)
       drawMarker(latlong)
 
       mMap.setOnMarkerDragListener(object: GoogleMap.OnMarkerDragListener{
@@ -137,13 +121,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
   private fun getAddress(lat: Double, lon: Double) : String?  {
    val geocoder = Geocoder(this, Locale.getDefault())
     val address =  geocoder.getFromLocation(lat,lon, 1)
-    locationString = address[0].getAddressLine(0).toString()
-
+      locationString = address[0].getAddressLine(0).toString()
       binding.locationText.text=locationString
-//      food?.address =binding.locationText.text.toString()
-//    food?.address =address[0].getAddressLine(0).toString()
 
-    return  address[0].getAddressLine(0).toString()
+    return  locationString
   }
 
 
@@ -160,8 +141,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
     }
     mMap.animateCamera(CameraUpdateFactory.newLatLng(LatLng(location.latitude, location.longitude)))
   }
-
-//  var addr = getAddress(currentlocation?.latitude!!,currentlocation?.longitude!!)
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
