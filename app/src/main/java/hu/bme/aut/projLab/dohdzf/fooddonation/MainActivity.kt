@@ -36,10 +36,10 @@ class MainActivity : AppCompatActivity() {
         KEY_Pass = binding.loginPassword.text.toString()
 
         if(KEY_LOG.isNullOrEmpty() ) {
-          binding.loginName.setError("CAnnot be empty")
+          binding.loginName.setError("Cannot be empty")
         }
         else if (KEY_Pass.isNullOrEmpty()) {
-          binding.loginPassword.setError("CAnnot be empty")
+          binding.loginPassword.setError("Cannot be empty")
         }
         else{
           FirebaseAuth.getInstance().signInWithEmailAndPassword(KEY_LOG, KEY_Pass).addOnCompleteListener(this){

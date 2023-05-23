@@ -37,16 +37,16 @@ class SignUp : AppCompatActivity() {
       KEY_Pass_Validation = binding.confirmButton.text.toString()
 
       if(KEY_Name.isNullOrEmpty() ) {
-        binding.loginName.setError("CAnnot be empty")
+        binding.loginName.setError("Cannot be empty")
       }
       else if (KEY_Email.isNullOrEmpty()) {
-        binding.embed.setError("CAnnot be empty")
+        binding.embed.setError("Cannot be empty")
       }
       else if(KEY_Password.isNullOrEmpty()) {
-        binding.loginPassword.setError("CAnnot be empty")
+        binding.loginPassword.setError("Cannot be empty")
       }
       else if (KEY_Pass_Validation.isNullOrEmpty()  ){
-        binding.confirmButton.setError("CAnnot be empty")
+        binding.confirmButton.setError("Cannot be empty")
       }
       else if( !KEY_Pass_Validation.equals(KEY_Password) ){
         binding.confirmButton.setError("Make sure confirmation similar to normal")
@@ -56,7 +56,7 @@ class SignUp : AppCompatActivity() {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(KEY_Email, KEY_Password).addOnCompleteListener{
             task ->
           if (task.isSuccessful) {
-            Toast.makeText(this, "Registration OK", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Registered Successfully", Toast.LENGTH_LONG).show()
 
           } else {
             Toast.makeText(this, "Failed to Register Please try again", Toast.LENGTH_LONG).show()
