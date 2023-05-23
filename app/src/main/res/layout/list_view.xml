@@ -7,7 +7,6 @@
   android:layout_height="match_parent"
   android:background="@drawable/sky"
   tools:context=".dashboard"
-
   >
 
   <androidx.recyclerview.widget.RecyclerView
@@ -22,7 +21,7 @@
     android:background="@drawable/sky"
     >
   </androidx.recyclerview.widget.RecyclerView>
-<!--  tools:listitem="@layout/item_layout"-->
+
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
     android:id="@+id/add"

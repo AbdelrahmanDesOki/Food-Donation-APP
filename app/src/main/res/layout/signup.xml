@@ -10,7 +10,7 @@
 
   <EditText
     android:id="@+id/confirm_button"
-    android:layout_width="wrap_content"
+    android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:layout_marginTop="20dp"
     android:layout_marginBottom="20dp"
@@ -26,7 +26,7 @@
 
   <EditText
     android:id="@+id/login_password"
-    android:layout_width="wrap_content"
+    android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:layout_marginTop="24dp"
     android:ems="10"
@@ -41,7 +41,7 @@
 
   <EditText
     android:id="@+id/login_name"
-    android:layout_width="wrap_content"
+    android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:layout_marginTop="48dp"
     android:ems="10"
@@ -57,7 +57,7 @@
   <!--    this is id for mail embed-->
   <EditText
     android:id="@+id/embed"
-    android:layout_width="wrap_content"
+    android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:layout_marginTop="28dp"
     android:ems="10"
@@ -79,7 +79,8 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.497"
-    app:layout_constraintStart_toStartOf="parent" />
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/confirm_button"/>
 
   <TextView
     android:id="@+id/textView2"

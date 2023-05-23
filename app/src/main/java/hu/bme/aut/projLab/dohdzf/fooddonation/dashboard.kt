@@ -46,6 +46,7 @@ class dashboard: AppCompatActivity() {
 
 
     binding.add.setOnClickListener{
+      Toast.makeText(this@dashboard,"Please Fill Sections by order ⬇️", Toast.LENGTH_LONG).show()
       val intentdetails = Intent (this, add_food::class.java)
       startActivity(intentdetails)
     }

@@ -86,7 +86,6 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/name"/>
 
-
   <Button
     android:id="@+id/map"
     android:layout_width="300dp"
@@ -101,6 +100,7 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/emailContact"
     />
+
   <TextView
     android:id="@+id/loc"
     android:layout_width="360dp"
@@ -110,6 +110,7 @@
     app:layout_constraintHorizontal_bias="0.51"
     app:layout_constraintStart_toStartOf="parent"
     android:hint="Location"
+    android:textColor="@color/black"
     app:layout_constraintTop_toBottomOf="@+id/map"/>
 
 
