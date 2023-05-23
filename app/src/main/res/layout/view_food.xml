@@ -82,6 +82,7 @@
     android:layout_width="360dp"
     android:layout_height="50dp"
     android:layout_marginTop="4dp"
+    android:layout_marginHorizontal="20dp"
     android:text="Contact Email address"
     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
     android:textSize="14dp"
