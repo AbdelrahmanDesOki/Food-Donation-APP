@@ -19,12 +19,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import hu.bme.aut.projLab.dohdzf.fooddonation.DataClass.Food
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.AddFoodBinding
 import java.io.ByteArrayOutputStream
 import java.net.URLEncoder
 import java.util.*
 import kotlin.jvm.Throws
-
 
 
 class add_food:AppCompatActivity() {
@@ -37,9 +37,6 @@ class add_food:AppCompatActivity() {
     private const val PERMISSION_REQUEST_CODE = 1001
     private const val CAMERA_REQUEST_CODE = 1002
      }
-
-
-
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -68,11 +65,9 @@ class add_food:AppCompatActivity() {
 
       startActivityForResult(Intent(this, MapsActivity::class.java), 101)
 
-      if(
-        binding.foodTitle.text.toString().isNotEmpty() ||
-        binding.name.text.toString().isNotEmpty() ||
-        binding.emailContact.text.toString().isNotEmpty()
-       )
+      if( binding.foodTitle.text.toString().isNotEmpty() ||
+          binding.name.text.toString().isNotEmpty() ||
+          binding.emailContact.text.toString().isNotEmpty() )
       {
         binding.add.visibility= View.VISIBLE
       }
@@ -83,15 +78,19 @@ class add_food:AppCompatActivity() {
 
     binding.add.setOnClickListener {
 
-      if(uploadBitmap == null){
+      if(uploadBitmap == null)
+      {
         sendItem("")
-      }else{
-      try {
-          uploadImage()
-      }catch (e: java.lang.Exception){
-        e.printStackTrace()
       }
-    }
+      else
+      {
+         try {
+             uploadImage()
+          }catch (e: java.lang.Exception)
+          {
+             e.printStackTrace()
+          }
+     }
       val intent = Intent(this, dashboard::class.java)
       startActivity(intent)
       finish()
@@ -100,30 +99,29 @@ class add_food:AppCompatActivity() {
     onreqNeededPerm()
   }
 
-private fun sendItem(imageUrl: String = ""){
-  val food = Food(
-    FirebaseAuth.getInstance().currentUser!!.uid,
-    binding.foodTitle.text.toString(),
-    binding.name.text.toString(),
-    imageUrl,
-    binding.descriptionFood.text.toString(),
-    binding.loc.text.toString(),
-    binding.emailContact.text.toString()
-  )
+  private fun sendItem(imageUrl: String = ""){
+    val food = Food(
+      FirebaseAuth.getInstance().currentUser!!.uid,
+      binding.foodTitle.text.toString(),
+      binding.name.text.toString(),
+      imageUrl,
+      binding.descriptionFood.text.toString(),
+      binding.loc.text.toString(),
+      binding.emailContact.text.toString() )
 
-  var usercollection = FirebaseFirestore.getInstance().collection("Users")
-  usercollection
-    .add(food)
-    .addOnSuccessListener {
-    Toast.makeText(this@add_food,"Data Uploaded Successfully ", Toast.LENGTH_LONG).show()
-  }
-    .addOnFailureListener{
-      Toast.makeText(this@add_food,"Failed to Upload Data ", Toast.LENGTH_LONG).show()
+    var usercollection = FirebaseFirestore.getInstance().collection("Users")
+     usercollection
+      .add(food)
+      .addOnSuccessListener {
+      Toast.makeText(this@add_food,"Data Uploaded Successfully ", Toast.LENGTH_LONG).show()
     }
-}
+      .addOnFailureListener{
+        Toast.makeText(this@add_food,"Failed to Upload Data ", Toast.LENGTH_LONG).show()
+      }
+  }
 
 
-@Throws(Exception::class)
+  @Throws(Exception::class)
   private fun uploadImage() {
 
     val baos = ByteArrayOutputStream()
@@ -170,9 +168,7 @@ private fun sendItem(imageUrl: String = ""){
         arrayOf(android.Manifest.permission.CAMERA),
         PERMISSION_REQUEST_CODE
       )
-    } else {
-      // we already have permission
-    }
+    } else { }
   }
 
   override fun onRequestPermissionsResult(
@@ -202,7 +198,6 @@ private fun sendItem(imageUrl: String = ""){
     }
     //used for maps data
     if(requestCode == 101 && resultCode == Activity.RESULT_OK){
-
       var location = data!!.getStringExtra("loc")
       binding.loc.text=location.toString()
 

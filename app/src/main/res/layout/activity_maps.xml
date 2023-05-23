@@ -10,6 +10,7 @@
     android:id="@+id/getLocation"
     android:text="Get Location"
     android:layout_width="match_parent"
+    android:backgroundTint="@android:color/holo_blue_bright"
     android:layout_height="50dp"/>
 
 

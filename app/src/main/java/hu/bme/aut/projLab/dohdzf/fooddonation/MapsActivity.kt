@@ -3,27 +3,22 @@ package hu.bme.aut.projLab.dohdzf.fooddonation
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import hu.bme.aut.projLab.dohdzf.fooddonation.DataClass.Food
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ActivityMapsBinding
 import java.util.*
-//import com.sucho
 
-//Need to fix how to move marker on map
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider.OnNewLocationAvailable {
 
     private lateinit var binding: ActivityMapsBinding
@@ -33,7 +28,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MyLocationProvider
     private val permissionCode = 101
     lateinit var currentMarker: Marker
     private lateinit var myLocationProvider: MyLocationProvider
-    var food: Food ?= null
+    var food: Food?= null
   private lateinit var locationString: String
 
     override fun onCreate(savedInstanceState: Bundle?) {

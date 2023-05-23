@@ -8,29 +8,27 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
 import com.google.firebase.firestore.*
-import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ItemLayoutBinding
+import hu.bme.aut.projLab.dohdzf.fooddonation.Adapter.FoodAdapter
+import hu.bme.aut.projLab.dohdzf.fooddonation.DataClass.Food
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ListViewBinding
 
 
 class dashboard: AppCompatActivity() {
 
    private lateinit var  binding: ListViewBinding
-//   private lateinit var binding_item: ItemLayoutBinding
-//   private  var dbref : DatabaseReference?= null
    private lateinit var foodArraylist : ArrayList<Food>
-
-  private lateinit var foodAdapter: FoodAdapter
+   private lateinit var foodAdapter: FoodAdapter
    private lateinit var foodrecyclerview : RecyclerView
-  lateinit var context: Context
+   lateinit var context: Context
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
     binding = ListViewBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
-   context = this
+    context = this
     foodrecyclerview = binding.recyclerPosts
     foodrecyclerview.layoutManager = LinearLayoutManager(this)
     foodrecyclerview.setHasFixedSize(true)
@@ -42,11 +40,9 @@ class dashboard: AppCompatActivity() {
 
     foodAdapter = FoodAdapter(context as dashboard, FirebaseAuth.getInstance().currentUser!!.uid)
     binding.recyclerPosts.adapter = foodAdapter
-//    dbref = FirebaseDatabase.getInstance().getReference("Users")
 
+    //call function to retrieve data from Firebase
      getFoodData()
-
-
 
 
     binding.add.setOnClickListener{

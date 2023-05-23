@@ -1,31 +1,25 @@
-
-
-package hu.bme.aut.projLab.dohdzf.fooddonation
+package hu.bme.aut.projLab.dohdzf.fooddonation.Adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.content.Context
 import android.content.Intent
-
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.imageview.ShapeableImageView
-import com.google.firebase.firestore.FirebaseFirestore
+import hu.bme.aut.projLab.dohdzf.fooddonation.DataClass.Food
+import hu.bme.aut.projLab.dohdzf.fooddonation.dashboard
 
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ItemLayoutBinding
+import hu.bme.aut.projLab.dohdzf.fooddonation.viewItem
 
-//import  hu.bme.aut.projLab.dohdzf.fooddonation.Foodadapterbinding
 
 class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
     var foodlist = ArrayList<Food>()
-  var foodKeys = mutableListOf<String>()
-   lateinit var currentUid: String
-    lateinit var context: Context
+    var foodKeys = mutableListOf<String>()
+    var currentUid: String
+    var context: Context
 
   constructor(context: dashboard, uid: String) : super() {
     this.context = context
@@ -56,6 +50,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
         holder.binding.cardView.setOnClickListener {
       val intentdetails = Intent (context as dashboard, viewItem::class.java)
+          //Keys used to send data between layouts
           intentdetails.putExtra("KEy", post)
           intentdetails.putExtra("photo", post.imgUrl)
           (context as dashboard).startActivity(intentdetails)
@@ -67,7 +62,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     return foodlist.size
   }
 
-   fun addFood(food:Food, key: String){
+   fun addFood(food: Food, key: String){
      foodlist.add(food)
      foodKeys.add(key)
      //notifyDataSetChanged()

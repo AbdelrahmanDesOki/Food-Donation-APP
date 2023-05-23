@@ -8,49 +8,6 @@
   tools:context=".viewItem"
   >
 
-  <TextView
-    android:id="@+id/name"
-    android:layout_width="135dp"
-    android:layout_height="32dp"
-    android:layout_marginHorizontal="20dp"
-    android:layout_marginTop="288dp"
-    android:text="Name"
-    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-    android:textSize="25sp"
-    android:textStyle="bold|italic"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.097"
-    app:layout_constraintStart_toStartOf="@+id/image"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/image"/>
-
-  <TextView
-    android:id="@+id/title"
-    android:layout_width="225dp"
-    android:layout_height="45dp"
-    android:layout_marginHorizontal="20dp"
-    android:layout_marginStart="32dp"
-    android:layout_marginTop="4dp"
-    android:text="title"
-    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-    android:textSize="30sp"
-    app:layout_constraintStart_toStartOf="@+id/image"
-    app:layout_constraintTop_toBottomOf="@+id/name" />
-
-  <TextView
-    android:id="@+id/description"
-    android:layout_width="225dp"
-    android:layout_height="50dp"
-    android:layout_marginTop="4dp"
-    android:text="description"
-    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-    android:textSize="20sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.086"
-    app:layout_constraintStart_toStartOf="@id/image"
-    app:layout_constraintTop_toBottomOf="@+id/title" />
-
-
   <ImageView
     android:id="@+id/image"
     android:layout_width="match_parent"
@@ -64,11 +21,54 @@
 
 
   <TextView
+    android:id="@+id/name"
+    android:layout_width="match_parent"
+    android:layout_height="32dp"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginTop="288dp"
+    android:text="Name"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="25sp"
+    android:textStyle="bold|italic"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.097"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/image"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+    android:id="@+id/title"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginTop="4dp"
+    android:text="Title"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="30sp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/name" />
+
+  <TextView
+    android:id="@+id/description"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginHorizontal="20dp"
+    android:text="Description"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="20sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.086"
+    app:layout_constraintStart_toStartOf="@id/image"
+    app:layout_constraintTop_toBottomOf="@+id/title" />
+
+  <TextView
     android:id="@+id/address"
-    android:layout_width="244dp"
+    android:layout_width="match_parent"
     android:layout_height="53dp"
     android:layout_marginBottom="212dp"
-    android:text="address"
+    android:layout_marginHorizontal="20dp"
+    android:text="Address"
     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
     android:textSize="20sp"
     app:layout_constraintBottom_toBottomOf="parent"
@@ -77,18 +77,18 @@
     app:layout_constraintStart_toStartOf="parent" />
 
 
-  <Button
-    android:id="@+id/request"
-    android:layout_width="267dp"
-    android:layout_height="64dp"
-    android:backgroundTint="@android:color/holo_blue_bright"
-    android:text="Request this"
-    android:textAllCaps="false"
-    android:textSize="20sp"
-    app:layout_constraintBottom_toBottomOf="parent"
+  <TextView
+    android:id="@+id/contact"
+    android:layout_width="360dp"
+    android:layout_height="50dp"
+    android:layout_marginTop="4dp"
+    android:text="Contact Email address"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="14dp"
     app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.313"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/contact" />
+    app:layout_constraintTop_toBottomOf="@+id/address" />
 
 
   <TextView
@@ -106,21 +106,20 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/address" />
+    app:layout_constraintTop_toBottomOf="@+id/contact" />
 
-  <TextView
-    android:id="@+id/contact"
-    android:layout_width="360dp"
-    android:layout_height="50dp"
-    android:layout_marginTop="4dp"
-    android:background="#45AFC1"
-    android:text="Contact Email address"
-    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-    android:textSize="12dp"
+
+  <Button
+    android:id="@+id/request"
+    android:layout_width="267dp"
+    android:layout_height="64dp"
+    android:backgroundTint="@android:color/holo_blue_bright"
+    android:text="Request this"
+    android:textAllCaps="false"
+    android:textSize="20sp"
+    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.313"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

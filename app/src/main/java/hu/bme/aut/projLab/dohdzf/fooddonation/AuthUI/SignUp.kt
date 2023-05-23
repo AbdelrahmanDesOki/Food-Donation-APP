@@ -1,10 +1,11 @@
-package hu.bme.aut.projLab.dohdzf.fooddonation
+package hu.bme.aut.projLab.dohdzf.fooddonation.AuthUI
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import hu.bme.aut.projLab.dohdzf.fooddonation.MainActivity
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.SignupBinding
 
 class SignUp : AppCompatActivity() {
@@ -44,8 +45,11 @@ class SignUp : AppCompatActivity() {
       else if(KEY_Password.isNullOrEmpty()) {
         binding.loginPassword.setError("CAnnot be empty")
       }
-      else if (KEY_Pass_Validation.isNullOrEmpty() || !KEY_Pass_Validation.equals(KEY_Password)){
+      else if (KEY_Pass_Validation.isNullOrEmpty()  ){
         binding.confirmButton.setError("CAnnot be empty")
+      }
+      else if( !KEY_Pass_Validation.equals(KEY_Password) ){
+        binding.confirmButton.setError("Make sure confirmation similar to normal")
       }
       else{
 
@@ -53,13 +57,11 @@ class SignUp : AppCompatActivity() {
             task ->
           if (task.isSuccessful) {
             Toast.makeText(this, "Registration OK", Toast.LENGTH_LONG).show()
-//            val user = task.result?.user
+
           } else {
             Toast.makeText(this, "Failed to Register Please try again", Toast.LENGTH_LONG).show()
-//            val exception = task.exception
           }
         }
-
 
        intentDetails.setClass(this, MainActivity::class.java)
         startActivity(intentDetails)

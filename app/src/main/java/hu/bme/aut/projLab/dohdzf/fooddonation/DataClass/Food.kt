@@ -1,8 +1,5 @@
-package hu.bme.aut.projLab.dohdzf.fooddonation
+package hu.bme.aut.projLab.dohdzf.fooddonation.DataClass
 
-import android.location.Location
-import android.net.Uri
-import android.widget.ImageView
 import java.io.Serializable
 
 data class Food(

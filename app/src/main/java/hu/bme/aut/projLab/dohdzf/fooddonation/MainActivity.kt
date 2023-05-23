@@ -4,10 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ActivityMainBinding
-import android.os.Parcelable
 import android.widget.Toast
-import androidx.core.text.isDigitsOnly
 import com.google.firebase.auth.FirebaseAuth
+import hu.bme.aut.projLab.dohdzf.fooddonation.AuthUI.SignUp
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,7 +45,7 @@ class MainActivity : AppCompatActivity() {
           FirebaseAuth.getInstance().signInWithEmailAndPassword(KEY_LOG, KEY_Pass).addOnCompleteListener(this){
               task -> if (task.isSuccessful) {
             // Authentication successful, proceed to next activity
-            val intent = Intent(this, add_food::class.java)
+            val intent = Intent(this, dashboard::class.java)
             startActivity(intent)
             Toast.makeText(this, "Successfully Authenticated ☑️", Toast.LENGTH_SHORT).show()
             finish()

@@ -7,10 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.ViewModel
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.SignupBinding
+import hu.bme.aut.projLab.dohdzf.fooddonation.DataClass.Food
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ViewFoodBinding
 
 class viewItem: AppCompatActivity() {
@@ -23,6 +22,7 @@ class viewItem: AppCompatActivity() {
     binding = ViewFoodBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
+    //getting data from another layout
     var food =  intent.getSerializableExtra("KEy") as Food
     var photo = intent.getStringExtra("photo")
 
@@ -39,17 +39,14 @@ class viewItem: AppCompatActivity() {
 
 
 
-
-
-
-//need to fix email format
+    //sending mail to user to request item based on email address.
     binding.request.setOnClickListener {
       FirebaseAuth.getInstance().sendPasswordResetEmail(binding.contact.text.toString()).addOnCompleteListener{
         task ->
         if(task.isSuccessful){
           Toast.makeText(this, "MAil Sent successfully ☑️", Toast.LENGTH_SHORT).show()
         }else{
-          Toast.makeText(this, "FAiled to send the emaill️", Toast.LENGTH_SHORT).show()
+          Toast.makeText(this, "FAiled to request this item", Toast.LENGTH_SHORT).show()
         }
         val intent = Intent(this, dashboard::class.java)
         startActivity(intent)
