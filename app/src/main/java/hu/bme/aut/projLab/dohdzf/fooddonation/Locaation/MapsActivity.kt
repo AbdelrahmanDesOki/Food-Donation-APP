@@ -90,20 +90,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
 
       mMap.setOnMarkerDragListener(object: GoogleMap.OnMarkerDragListener{
 
-        override fun onMarkerDrag(p0: Marker) {
-
-        }
+        override fun onMarkerDrag(p0: Marker) { }
         override fun onMarkerDragEnd(p0: Marker) {
            if(currentMarker!=null)
              currentMarker?.remove()
-
              val newLatLng = LatLng(p0?.position!!.latitude, p0?.position!!.longitude)
              drawMarker(newLatLng)
         }
 
-        override fun onMarkerDragStart(p0: Marker) {
-
-        }
+        override fun onMarkerDragStart(p0: Marker) { }
       } )
     }
 
