@@ -22,7 +22,7 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="500dp"
-    tools:context=".MapsActivity" />
+    tools:context=".Locaation.MapsActivity" />
 
   <TextView
     android:id="@+id/locationText"
