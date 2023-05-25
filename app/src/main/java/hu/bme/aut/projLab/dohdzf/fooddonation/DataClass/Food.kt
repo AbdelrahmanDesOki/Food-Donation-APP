@@ -9,5 +9,6 @@ data class Food(
   var imgUrl: String ?= null,
   var description: String ?= null,
   var address: String ?= null,
-  var email: String ?= null
+  var email: String ?= null,
+  var availableItems: String ?= null
       ): Serializable

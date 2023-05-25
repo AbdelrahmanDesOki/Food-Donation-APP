@@ -39,6 +39,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     holder.binding.userDonor.text=post.userDonor
     holder.binding.itemDescription.text=post.description
     holder.binding.itemLocation.text=post.address
+    holder.binding.available.text=post.availableItems
 
 
    if(post.imgUrl!!.isNotEmpty() ){

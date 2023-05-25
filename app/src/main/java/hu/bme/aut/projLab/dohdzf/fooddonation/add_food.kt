@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -45,6 +46,9 @@ class add_food:AppCompatActivity() {
     setContentView(binding.root)
 
     binding.add.visibility= View.GONE
+
+
+
 
     //validation with User id to store data
     auth = FirebaseAuth.getInstance()
@@ -108,7 +112,8 @@ class add_food:AppCompatActivity() {
       imageUrl,
       binding.descriptionFood.text.toString(),
       binding.loc.text.toString(),
-      binding.emailContact.text.toString() )
+      binding.emailContact.text.toString(),
+      binding.NumberPicker.text.toString())
 
     var usercollection = FirebaseFirestore.getInstance().collection("Users")
      usercollection
