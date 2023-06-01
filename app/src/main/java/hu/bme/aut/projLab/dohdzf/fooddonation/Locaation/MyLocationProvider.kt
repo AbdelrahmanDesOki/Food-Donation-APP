@@ -15,8 +15,9 @@ class MyLocationProvider(
     fun onNewLocation(location: Location)
   }
 
-  private val fusedLocationClient: FusedLocationProviderClient =
-    LocationServices.getFusedLocationProviderClient(context)
+  //Initialize fused location
+  private val fusedLocationClient:
+    FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
 
   private var locationCallback: LocationCallback = object : LocationCallback() {
     override fun onLocationResult(locationResult: LocationResult) {

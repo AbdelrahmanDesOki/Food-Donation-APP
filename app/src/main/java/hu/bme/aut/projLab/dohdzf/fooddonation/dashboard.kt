@@ -35,30 +35,22 @@ class dashboard: AppCompatActivity() {
 
 
     foodArraylist = arrayListOf<Food>()
-
-
-
     foodAdapter = FoodAdapter(context as dashboard, FirebaseAuth.getInstance().currentUser!!.uid)
     binding.recyclerPosts.adapter = foodAdapter
 
     //call function to retrieve data from Firebase
      getFoodData()
 
-
     binding.add.setOnClickListener{
       Toast.makeText(this@dashboard,"Please Fill Sections by order ⬇️", Toast.LENGTH_LONG).show()
       val intentdetails = Intent (this, add_food::class.java)
       startActivity(intentdetails)
     }
-
-
-
   }
 
 
 private fun getFoodData() {
-
-
+  //retrieving data from Database
   val db = FirebaseFirestore.getInstance().collection("Users")
   db.addSnapshotListener(
     object: EventListener<QuerySnapshot>{
@@ -82,7 +74,6 @@ private fun getFoodData() {
 
     }
   )
-
 
 }
 

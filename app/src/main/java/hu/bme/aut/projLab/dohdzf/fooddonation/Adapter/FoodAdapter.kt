@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import hu.bme.aut.projLab.dohdzf.fooddonation.DataClass.Food
 import hu.bme.aut.projLab.dohdzf.fooddonation.dashboard
-
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.ItemLayoutBinding
 import hu.bme.aut.projLab.dohdzf.fooddonation.viewItem
 
@@ -34,6 +33,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+    //binding the items in the card layout with data class
     var post = foodlist.get(holder.adapterPosition)
     holder.binding.foodTitle.text = post.titleFood
     holder.binding.userDonor.text=post.userDonor
@@ -41,13 +41,13 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     holder.binding.itemLocation.text=post.address
     holder.binding.available.text=post.availableItems
 
-
-   if(post.imgUrl!!.isNotEmpty() ){
-     holder.binding.imageItem.visibility = View.VISIBLE
-     Glide.with(context).load(post.imgUrl).into(holder.binding.imageItem)
-   }else{
-     holder.binding.imageItem.visibility =View.GONE
-   }
+    //binding photo with Glide open-source library
+     if(post.imgUrl!!.isNotEmpty() ){
+       holder.binding.imageItem.visibility = View.VISIBLE
+       Glide.with(context).load(post.imgUrl).into(holder.binding.imageItem)
+     }else{
+       holder.binding.imageItem.visibility =View.GONE
+     }
 
         holder.binding.cardView.setOnClickListener {
       val intentdetails = Intent (context as dashboard, viewItem::class.java)
@@ -78,9 +78,6 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder> {
       notifyItemRemoved(index)
     }
   }
-
-
-
 
   inner class ViewHolder(val binding: ItemLayoutBinding): RecyclerView.ViewHolder(binding.root){}
 

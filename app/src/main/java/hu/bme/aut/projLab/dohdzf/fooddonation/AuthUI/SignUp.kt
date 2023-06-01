@@ -30,7 +30,7 @@ class SignUp : AppCompatActivity() {
     binding.signup.setOnClickListener{
 
       var intentDetails = Intent()
-
+      //storing data in order to be able to verify it's correctness
       KEY_Name = binding.loginName.text.toString()
       KEY_Email = binding.embed.text.toString()
       KEY_Password = binding.loginPassword.text.toString()
@@ -52,7 +52,7 @@ class SignUp : AppCompatActivity() {
         binding.confirmButton.setError("Make sure confirmation similar to normal")
       }
       else{
-
+        //sending data to Firebase if it passed all the tests
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(KEY_Email, KEY_Password).addOnCompleteListener{
             task ->
           if (task.isSuccessful) {

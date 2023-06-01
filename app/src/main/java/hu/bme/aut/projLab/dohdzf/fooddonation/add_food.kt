@@ -1,12 +1,10 @@
 package hu.bme.aut.projLab.dohdzf.fooddonation
 
-
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -28,32 +26,29 @@ import java.net.URLEncoder
 import java.util.*
 import kotlin.jvm.Throws
 
-
 class add_food:AppCompatActivity() {
 
     private lateinit var binding: AddFoodBinding
     private lateinit var auth: FirebaseAuth
     var uploadBitmap: Bitmap? = null
-
     companion object {
     private const val PERMISSION_REQUEST_CODE = 1001
     private const val CAMERA_REQUEST_CODE = 1002
      }
 
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = AddFoodBinding.inflate(layoutInflater)
     setContentView(binding.root)
-
+    //hiding add item button.
     binding.add.visibility= View.GONE
-
-
-
 
     //validation with User id to store data
     auth = FirebaseAuth.getInstance()
 
     binding.imageFood.setOnClickListener {
+      //sending taken photo to the layout.
       try {
         startActivityForResult(
           Intent(MediaStore.ACTION_IMAGE_CAPTURE),
@@ -62,24 +57,23 @@ class add_food:AppCompatActivity() {
       } catch (e: Exception) {
         e.printStackTrace()
       }
+      //hiding the button
       binding.imageFood.visibility= View.GONE
     }
 
 
     binding.map.setOnClickListener{
-
+      //sending data between layouts.
       startActivityForResult(Intent(this, MapsActivity::class.java), 101)
 
+      //minimum requirements to show the button.
       if( binding.foodTitle.text.toString().isNotEmpty() ||
           binding.name.text.toString().isNotEmpty() ||
           binding.emailContact.text.toString().isNotEmpty() )
       {
         binding.add.visibility= View.VISIBLE
       }
-
     }
-
-
 
     binding.add.setOnClickListener {
 
@@ -100,11 +94,11 @@ class add_food:AppCompatActivity() {
       startActivity(intent)
       finish()
     }
-
     onreqNeededPerm()
   }
 
   private fun sendItem(imageUrl: String = ""){
+    //sending data to Firestore Database
     val food = Food(
       FirebaseAuth.getInstance().currentUser!!.uid,
       binding.foodTitle.text.toString(),
@@ -113,7 +107,8 @@ class add_food:AppCompatActivity() {
       binding.descriptionFood.text.toString(),
       binding.loc.text.toString(),
       binding.emailContact.text.toString(),
-      binding.NumberPicker.text.toString())
+      binding.NumberPicker.text.toString()
+    )
 
     var usercollection = FirebaseFirestore.getInstance().collection("Users")
      usercollection
@@ -129,10 +124,10 @@ class add_food:AppCompatActivity() {
 
   @Throws(Exception::class)
   private fun uploadImage() {
-
-    val baos = ByteArrayOutputStream()
-    uploadBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-    val imageInBytes = baos.toByteArray()
+    //converting image to bytes to be able to upload it.
+    val bias = ByteArrayOutputStream()
+    uploadBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, bias)
+    val imageInBytes = bias.toByteArray()
     val storageRef = Firebase.storage.reference
     val newImage = URLEncoder.encode(UUID.randomUUID().toString(), "UTF-8") + ".jpg"
     val newImagesRef = storageRef.child("Users/$newImage")
@@ -145,15 +140,13 @@ class add_food:AppCompatActivity() {
           override fun onComplete(p0: Task<Uri>) {
             sendItem(p0.result.toString())
           }
-
         })
       }
   }
 
 
-
-  fun onreqNeededPerm(){
-
+  //permissions needed to access the camera.
+  private fun onreqNeededPerm(){
     if (ContextCompat.checkSelfPermission(
         this,
         android.Manifest.permission.CAMERA

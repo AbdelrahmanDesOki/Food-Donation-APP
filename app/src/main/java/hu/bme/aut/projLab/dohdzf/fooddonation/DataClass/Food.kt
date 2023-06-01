@@ -2,6 +2,7 @@ package hu.bme.aut.projLab.dohdzf.fooddonation.DataClass
 
 import java.io.Serializable
 
+//Data Class that is send to Firebase
 data class Food(
   var uid: String ?= null ,
   var titleFood: String ?= null,

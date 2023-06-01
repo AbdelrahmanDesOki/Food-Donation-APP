@@ -37,33 +37,32 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        //using fused location to able to provide location based on GPS, WIFI and Cellular
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         getCurrentLocationUser()
 
         binding.getLocation.setOnClickListener {
-
+          //sending location data to another layout
           var intent = Intent()
           intent.putExtra("loc", binding.locationText.text.toString())
           setResult(Activity.RESULT_OK, intent)
-
           finish()
-
         }
 
     }
 
   private fun getCurrentLocationUser(){
+
     if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
       ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
     ){
+      //getting permission to be able to access the location.
       ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), permissionCode)
       myLocationProvider = MyLocationProvider(this, this)
       myLocationProvider.startLocationMonitoring()
       return
     }
-
         val mapFragment = supportFragmentManager
           .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -83,8 +82,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
   }
 
     override fun onMapReady(googleMap: GoogleMap) {
-     mMap = googleMap
-
+      mMap = googleMap
+      //sending specific long and lat to be the start point for the maps marker.
       val latlong = LatLng(47.4733781,19.059865)
       drawMarker(latlong)
 
@@ -97,12 +96,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
              val newLatLng = LatLng(p0?.position!!.latitude, p0?.position!!.longitude)
              drawMarker(newLatLng)
         }
-
         override fun onMarkerDragStart(p0: Marker) { }
       } )
     }
 
   private fun drawMarker(latlng: LatLng){
+    //showing current location above marker.
     val markerOptions = MarkerOptions().position(latlng).title("Current Location")
         .snippet(getAddress(latlng.latitude, latlng.longitude))
           .draggable(true)
@@ -116,6 +115,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
   }
 
   private fun getAddress(lat: Double, lon: Double) : String?  {
+    //return string that contain the exact location.
    val geocoder = Geocoder(this, Locale.getDefault())
     val address =  geocoder.getFromLocation(lat,lon, 1)
       locationString = address[0].getAddressLine(0).toString()
@@ -134,8 +134,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
           distance += location.distanceTo(prevLocation)
         }
       }
-      prevLocation = location
     }
+    //change the view based on the marker location.
     mMap.animateCamera(CameraUpdateFactory.newLatLng(LatLng(location.latitude, location.longitude)))
   }
 
@@ -148,6 +148,5 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
 
     }
   }
-
 
 }

@@ -27,7 +27,7 @@ class viewItem: AppCompatActivity() {
     binding = ViewFoodBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
-    //getting data from another layout
+    //getting data from add-food layout
     var food =  intent.getSerializableExtra("KEy") as Food
     var photo = intent.getStringExtra("photo")
 
