@@ -19,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import hu.bme.aut.projLab.dohdzf.fooddonation.DataClass.Food
-import hu.bme.aut.projLab.dohdzf.fooddonation.Locaation.MapsActivity
+import hu.bme.aut.projLab.dohdzf.fooddonation.Location.MapsActivity
 import hu.bme.aut.projLab.dohdzf.fooddonation.databinding.AddFoodBinding
 import java.io.ByteArrayOutputStream
 import java.net.URLEncoder

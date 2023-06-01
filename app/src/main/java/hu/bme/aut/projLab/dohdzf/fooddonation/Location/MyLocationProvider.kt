@@ -1,4 +1,4 @@
-package hu.bme.aut.projLab.dohdzf.fooddonation.Locaation
+package hu.bme.aut.projLab.dohdzf.fooddonation.Location
 
 import android.content.Context
 import android.location.Location
