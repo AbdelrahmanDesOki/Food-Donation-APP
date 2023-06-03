@@ -1,1 +1,3 @@
 # Food Donation APP
+
+My app goes behind equality and environment without waste to donation of our extra food and drinks to those who might need it or know someone who needs it. So as a Donor I can share details about the extra food I have such as photo, location, description, contact email address, valid until when, and my name if I want. The user then can check all this details to see if the item is suitable for him/her or not. If so, then user can request it by sending email address to the donor and if it is available then they can contact, otherwise donor can ignore the message if the item is not available anymore. 
